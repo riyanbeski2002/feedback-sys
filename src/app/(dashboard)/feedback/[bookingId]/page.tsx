@@ -1,5 +1,6 @@
 import { createClient } from "@/lib/supabase/server"
 import { FeedbackForm } from "@/features/feedback/components/feedback-form"
+import { DuplicateError } from "@/features/feedback/components/duplicate-error"
 import { notFound, redirect } from "next/navigation"
 
 export default async function FeedbackPage({
@@ -26,15 +27,17 @@ export default async function FeedbackPage({
     notFound()
   }
 
-  // Redirect if not eligible or already submitted
+  // Redirect if not completed
   if (booking.status !== "completed") {
     redirect("/bookings")
   }
 
   if (booking.feedback_submitted) {
-    // This will be handled by a duplicate error component later in Task 2 of Plan 03
-    // For now, let's redirect back to bookings or success if already submitted
-    redirect("/bookings")
+    return (
+      <div className="flex-1 space-y-4 p-8 pt-6">
+        <DuplicateError />
+      </div>
+    )
   }
 
   return (
