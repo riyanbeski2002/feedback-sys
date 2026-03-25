@@ -28,7 +28,12 @@ Success criteria:
 
 **Phase 2: Feedback Loop**
 Goal: Build the end-to-end feedback submission path from booking simulation.
-Requirements: TRG-01, TRG-02, COL-01, COL-02, COL-04
+Requirements: [TRG-01, TRG-02, COL-01, COL-02, COL-04, SCI-01]
+**Plans:** 3 plans
+Plans:
+- [ ] 02-01-PLAN.md — Booking simulation and checkout action.
+- [ ] 02-02-PLAN.md — Detailed feedback form and scoring logic.
+- [ ] 02-03-PLAN.md — Success page and duplicate prevention.
 Success criteria:
 3. User can click "Simulate Checkout" for a booking.
 4. Booking becomes "eligible" for feedback.
