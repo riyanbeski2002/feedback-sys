@@ -16,7 +16,12 @@
 
 **Phase 1: Foundation**
 Goal: Set up the project scaffold, database (Supabase), and seed data.
-Requirements: SCI-03 (partial)
+Requirements: [SCI-03]
+**Plans:** 3 plans
+Plans:
+- [ ] 01-01-PLAN.md — Initialize Next.js and build dashboard layout.
+- [ ] 01-02-PLAN.md — Setup Supabase SSR and seed initial data.
+- [ ] 01-03-PLAN.md — Verify infrastructure and UI.
 Success criteria:
 1. Next.js app running with shadcn/ui.
 2. Supabase tables (hotels, bookings) seeded with demo data.
