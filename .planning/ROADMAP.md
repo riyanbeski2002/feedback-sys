@@ -6,7 +6,7 @@
 
 | # | Phase | Goal | Requirements | Success Criteria |
 |---|-------|------|--------------|------------------|
-| 1 | Foundation | Core DB schema and project scaffold. | SCI-03 | 1, 2 |
+| 1 | Foundation | Core DB schema and project scaffold. | SCI-03 | ✓ Complete (2026-03-25) |
 | 2 | Feedback Loop | Simulation, triggering, and collection flow. | TRG-01, TRG-02, COL-01, COL-02, COL-04 | 3, 4, 5 |
 | 3 | Scoring & Ranking | Score calculations and real-time UI ranking update. | SCI-01, SCI-03, DSB-01 | 6, 7 |
 | 4 | Admin & Config | Configuration panel and management dashboard. | SCI-04, DSB-02, DSB-03, TRG-04 | 8, 9 |
@@ -19,9 +19,9 @@ Goal: Set up the project scaffold, database (Supabase), and seed data.
 Requirements: [SCI-03]
 **Plans:** 3 plans
 Plans:
-- [ ] 01-01-PLAN.md — Initialize Next.js and build dashboard layout.
-- [ ] 01-02-PLAN.md — Setup Supabase SSR and seed initial data.
-- [ ] 01-03-PLAN.md — Verify infrastructure and UI.
+- [x] 01-01-PLAN.md — Initialize Next.js and build dashboard layout. (2026-03-25)
+- [x] 01-02-PLAN.md — Setup Supabase SSR and seed initial data. (2026-03-25)
+- [x] 01-03-PLAN.md — Verify infrastructure and UI. (2026-03-25)
 Success criteria:
 1. Next.js app running with shadcn/ui.
 2. Supabase tables (hotels, bookings) seeded with demo data.
