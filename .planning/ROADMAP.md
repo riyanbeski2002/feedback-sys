@@ -7,7 +7,7 @@
 | # | Phase | Goal | Requirements | Success Criteria |
 |---|-------|------|--------------|------------------|
 | 1 | Foundation | Core DB schema and project scaffold. | SCI-03 | ✓ Complete (2026-03-25) |
-| 2 | Feedback Loop | Simulation, triggering, and collection flow. | TRG-01, TRG-02, COL-01, COL-02, COL-04 | 3, 4, 5 |
+| 2 | Feedback Loop | Simulation, triggering, and collection flow. | [TRG-01, TRG-02, COL-01, COL-02, COL-04, SCI-01] | ✓ Complete (2026-03-25) |
 | 3 | Scoring & Ranking | Score calculations and real-time UI ranking update. | SCI-01, SCI-03, DSB-01 | 6, 7 |
 | 4 | Admin & Config | Configuration panel and management dashboard. | SCI-04, DSB-02, DSB-03, TRG-04 | 8, 9 |
 | 5 | Multi-channel & AI | Notification previews and sentiment analysis. | TRG-03, COL-03, SCI-02 | 10, 11 |
@@ -31,9 +31,9 @@ Goal: Build the end-to-end feedback submission path from booking simulation.
 Requirements: [TRG-01, TRG-02, COL-01, COL-02, COL-04, SCI-01]
 **Plans:** 3 plans
 Plans:
-- [ ] 02-01-PLAN.md — Booking simulation and checkout action.
-- [ ] 02-02-PLAN.md — Detailed feedback form and scoring logic.
-- [ ] 02-03-PLAN.md — Success page and duplicate prevention.
+- [x] 02-01-PLAN.md — Booking simulation and checkout action. (2026-03-25)
+- [x] 02-02-PLAN.md — Detailed feedback form and scoring logic. (2026-03-25)
+- [x] 02-03-PLAN.md — Success page and duplicate prevention. (2026-03-25)
 Success criteria:
 3. User can click "Simulate Checkout" for a booking.
 4. Booking becomes "eligible" for feedback.
