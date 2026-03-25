@@ -10,13 +10,14 @@ See: .planning/PROJECT.md (updated Tuesday, 24 March 2026)
 ## Current Phase: 1. Foundation
 
 ### Status
-- [ ] Initialize Next.js project
-- [ ] Setup shadcn/ui
-- [ ] Setup Supabase client
-- [ ] Create database tables and seed data
+- [x] Phase 1 context gathered
+- [x] Initialize Next.js project
+- [x] Setup shadcn/ui
+- [x] Setup Supabase client
+- [x] Create database tables and seed data
 
 ### Current Task
-Initializing the Next.js project scaffold.
+Phase 1 verification (Plan 01-03).
 
 ### Blockers
 None.
@@ -30,6 +31,8 @@ None.
 | Date | Event | Outcome |
 |------|-------|---------|
 | 2026-03-24 | Project Initialized | Roadmap with 5 phases created. |
+| 2026-03-24 | Context Gathered (01) | Decisions for Phase 1 captured. |
+| 2026-03-25 | Foundation Executed | Next.js 16 scaffold + Supabase seeded. |
 
 ---
-*Last updated: Tuesday, 24 March 2026 after project initialization*
+*Last updated: Wednesday, 25 March 2026 after Phase 1 execution*
