@@ -38,7 +38,7 @@
 
 ### Design (DSG)
 - [x] **DSG-01**: All app screens have Pencil MCP-approved mockups before any UI code is written
-- [ ] **DSG-02**: Pencil MCP mockups include pixel-accurate notification format designs for Email, Slack, Teams, and WhatsApp showing how feedback alerts appear in each channel
+- [x] **DSG-02**: Pencil MCP mockups include pixel-accurate notification format designs for Email, Slack, Teams, and WhatsApp showing how feedback alerts appear in each channel
 - [ ] **DSG-03**: Hotel status badges use teal-based color palette (not hardcoded green/slate/orange/red)
 - [ ] **DSG-04**: Admin metric cards use design system colors (no hardcoded yellow or blue)
 - [ ] **DSG-05**: All badge/chip elements use `rounded-full` pill style matching Ziptrrip
@@ -95,7 +95,7 @@
 | FND-03 | Phase 6 | Complete |
 | FND-04 | Phase 6 | Complete |
 | DSG-01 | Phase 7 | Complete |
-| DSG-02 | Phase 7 | Pending |
+| DSG-02 | Phase 7 | Complete |
 | DSG-03 | Phase 8 | Pending |
 | DSG-04 | Phase 8 | Pending |
 | DSG-05 | Phase 8 | Pending |
