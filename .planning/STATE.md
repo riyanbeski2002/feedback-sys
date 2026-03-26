@@ -2,64 +2,47 @@
 
 ## Project Reference
 
-See: .planning/PROJECT.md (updated Tuesday, 24 March 2026)
+See: .planning/PROJECT.md (updated Thursday, 26 March 2026)
 
 **Core value:** Create a reliable, automated feedback intelligence loop that improves hotel recommendation quality based on verified guest experiences.
-**Current focus:** Project Complete ✓
+**Current focus:** Milestone v2.0 — Ziptrrip Design Fidelity & Full Functionality
 
-## Current Phase: 5. Multi-channel & AI (Completed)
+## Current Position
 
-### Status
-- [x] Notification preview center implemented (`/notifications`)
-- [x] Multi-channel mocks (Email, WhatsApp, Slack, Teams) built
-- [x] AI analysis engine (Sentiment, Category, Urgency) implemented
-- [x] Admin Feed updated with intelligence tags and urgency flags
-- [x] Feedback submission automated with analysis logic
+Phase: Not started (defining requirements)
+Plan: —
+Status: Defining requirements
+Last activity: 2026-03-26 — Milestone v2.0 started
 
-### Current Task
-Project v1 MVP complete. All requirements met and verified.
+## Blockers
 
-### Blockers
 None.
+
+## Accumulated Context
+
+- v1.0 UAT revealed: no seed data visible, settings page crashes (.single() on multi-row feedback_config), design looks black/white (teal tokens exist but hardcoded colors dominate), notifications are static-only previews
+- Ziptrrip design reference: teal #72D3C4, Inter typography, rounded-full pill buttons, white card backgrounds, B2B density
+- Settings crash root cause: feedback_config table has multiple rows (seed ran multiple times, no uniqueness constraint) — .single() throws when multiple rows returned
+- Design work must use Pencil MCP for mockup approval gate before any code changes
 
 ## Phase History
 
 - **Phase 1: Foundation** (Completed 2026-03-25)
-  - Next.js 16 scaffold initialized.
-  - Sidebar and Theme support implemented.
-  - Supabase SSR and Seed data integrated.
+  - Next.js 16 scaffold, Sidebar, Theme support, Supabase SSR, seed data.
 - **Phase 2: Feedback Loop** (Completed 2026-03-25)
-  - Booking simulation and checkout action built.
-  - Detailed feedback form with star ratings implemented.
-  - Success flow and duplicate prevention verified.
+  - Booking simulation, feedback form, success flow, duplicate prevention.
 - **Phase 3: Scoring & Ranking** (Completed 2026-03-25)
-  - Weighted Reliability Ranking formula implemented.
-  - Real-time Hotel Grid with discovery feed built.
-  - Flash highlights and ranking re-ordering logic added.
+  - Weighted reliability ranking, real-time hotel grid, flash highlights.
 - **Phase 4: Admin & Config** (Completed 2026-03-25)
-  - Operational dashboard with metrics and flagged hotels.
-  - Configuration panel for weights, thresholds, and communication.
-  - Real-time data persistence for system-wide feedback rules.
-- **Phase 5: Multi-channel & AI** (Completed 2026-03-25)
-  - Notification preview center for 4 channels.
-  - AI-driven sentiment and categorization logic.
-  - Automated urgency flagging for critical feedback.
+  - Admin dashboard, config panel, metrics, flagged hotels.
+- **Phase 5: Multi-channel & AI** (Completed 2026-03-26)
+  - Notification previews (4 channels), AI sentiment/category/urgency tagging.
 
 ## Milestone Log
 
 | Date | Event | Outcome |
 |------|-------|---------|
 | 2026-03-24 | Project Initialized | Roadmap with 5 phases created. |
-| 2026-03-24 | Context Gathered (01) | Decisions for Phase 1 captured. |
-| 2026-03-25 | Foundation Executed | Phase 1 complete. |
-| 2026-03-25 | Context Gathered (02) | Decisions for Phase 2 captured. |
-| 2026-03-25 | Feedback Loop Executed | Phase 2 complete. |
-| 2026-03-25 | Context Gathered (03) | Decisions for Phase 3 captured. |
-
----
-## Session Continuity
-
-Last session: Wednesday, 25 March 2026
-Stopped at: Session resumed, proceeding to Plan Phase 3.
-Resume file: None.
-
+| 2026-03-25 | v1.0 Foundation–Admin Executed | Phases 1–4 complete. |
+| 2026-03-26 | v1.0 Multi-channel & AI | Phase 5 complete. v1.0 MVP shipped. |
+| 2026-03-26 | v2.0 Milestone Started | Design fidelity & full functionality milestone. |
