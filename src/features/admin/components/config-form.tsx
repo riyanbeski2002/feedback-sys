@@ -8,7 +8,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Separator } from "@/components/ui/separator"
 import { Badge } from "@/components/ui/badge"
 import { Check, Loader2, Save, Scale, Bell, Settings2 } from "lucide-react"
-import { useToast } from "@/hooks/use-toast"
+import { toast } from "sonner"
 
 interface Config {
   id: string
@@ -37,7 +37,6 @@ interface ConfigFormProps {
 export function ConfigForm({ initialConfig }: ConfigFormProps) {
   const [config, setConfig] = useState(initialConfig)
   const [loading, setLoading] = useState(false)
-  const { toast } = useToast()
 
   const totalWeight = 
     Number(config.cleanliness_weight) + 
@@ -52,10 +51,8 @@ export function ConfigForm({ initialConfig }: ConfigFormProps) {
     e.preventDefault()
     
     if (!isWeightValid) {
-      toast({
-        title: "Invalid Weights",
+      toast.error("Invalid Weights", {
         description: `Weights must sum to 1.0 (Current: ${totalWeight.toFixed(2)})`,
-        variant: "destructive",
       })
       return
     }
@@ -71,15 +68,12 @@ export function ConfigForm({ initialConfig }: ConfigFormProps) {
     })
 
     if (result.success) {
-      toast({
-        title: "Settings Saved",
+      toast.success("Settings Saved", {
         description: "Global feedback configuration updated successfully.",
       })
     } else {
-      toast({
-        title: "Error",
+      toast.error("Error", {
         description: result.error,
-        variant: "destructive",
       })
     }
     setLoading(false)

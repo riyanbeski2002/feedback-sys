@@ -4,6 +4,7 @@ import { FlaggedHotelsTable } from "@/features/admin/components/flagged-hotels-t
 import { RecentFeedbackFeed } from "@/features/admin/components/recent-feedback-feed"
 import { LayoutDashboard, AlertTriangle, Activity } from "lucide-react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
 
 export default async function AdminDashboard() {
   const supabase = await createClient()
