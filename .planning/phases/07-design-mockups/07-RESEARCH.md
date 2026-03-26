@@ -356,7 +356,7 @@ WhatsApp chrome:
 
 **What goes wrong:** .pen file created at default location or project root. Phase 8 can't find it via Pencil MCP `open_document`.
 
-**How to avoid:** On `open_document`, explicitly pass `.planning/designs/feedback-intel.pen` as the path. If opening a new file, move it there immediately.
+**How to avoid:** On `open_document`, explicitly pass `pencil-new.pen` as the path. If opening a new file, move it there immediately.
 
 ---
 
@@ -371,7 +371,7 @@ These are Pencil MCP operation patterns verified from the MCP server tool defini
    → check if .pen file is active
 
 2. If no active file:
-   mcp__pencil__open_document(".planning/designs/feedback-intel.pen")
+   mcp__pencil__open_document("pencil-new.pen")
    — or pass "new" if file does not yet exist
 
 3. mcp__pencil__get_guidelines(topic="web-app")
