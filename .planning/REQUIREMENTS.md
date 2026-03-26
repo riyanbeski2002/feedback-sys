@@ -31,8 +31,8 @@
 ## v2 Requirements (Milestone v2.0 — Active)
 
 ### Foundation (FND)
-- [ ] **FND-01**: App runs on Tailwind CSS stable v4 in both dev and production builds
-- [ ] **FND-02**: All CSS custom properties use `hsl()` wrappers and `@theme inline` so teal tokens apply correctly across light and dark mode
+- [x] **FND-01**: App runs on Tailwind CSS stable v4 in both dev and production builds
+- [x] **FND-02**: All CSS custom properties use `hsl()` wrappers and `@theme inline` so teal tokens apply correctly across light and dark mode
 - [ ] **FND-03**: Seed script can be run multiple times without creating duplicate hotels, bookings, or config rows
 - [ ] **FND-04**: `dotenv` is listed in devDependencies so seed script loads env vars reliably
 
@@ -90,8 +90,8 @@
 ### v2 Requirements
 | REQ-ID | Phase | Status |
 |--------|-------|--------|
-| FND-01 | Phase 6 | Pending |
-| FND-02 | Phase 6 | Pending |
+| FND-01 | Phase 6 | Complete |
+| FND-02 | Phase 6 | Complete |
 | FND-03 | Phase 6 | Pending |
 | FND-04 | Phase 6 | Pending |
 | DSG-01 | Phase 7 | Pending |

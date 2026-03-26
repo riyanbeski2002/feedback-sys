@@ -10,9 +10,9 @@ See: .planning/PROJECT.md (updated 2026-03-26)
 ## Current Position
 
 Phase: 6 of 9 (Foundation Stabilization)
-Plan: 0 of TBD in current phase
-Status: Ready to plan
-Last activity: 2026-03-26 — v2.0 roadmap created (Phases 6-9 defined)
+Plan: 1 of 3 in current phase
+Status: In Progress
+Last activity: 2026-03-26 — 06-01 complete: Tailwind v4.2.2 upgrade and globals.css migration
 
 Progress: [█████░░░░░] ~50% (v1.0 complete, v2.0 starting)
 
@@ -32,6 +32,7 @@ Progress: [█████░░░░░] ~50% (v1.0 complete, v2.0 starting)
 | 3-5. Remaining v1.0 | 3+ | ~2.75h | ~55 min |
 
 *Updated after each plan completion*
+| Phase 06-foundation-stabilization P01 | 1 | 2 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -41,6 +42,8 @@ Progress: [█████░░░░░] ~50% (v1.0 complete, v2.0 starting)
 - Pencil MCP mockup approval is a hard gate before any UI code changes (DSG-01 requirement)
 - Teal #72D3C4 fails WCAG AA for body text — use only for accents (icons, focus rings, borders), keep dark foreground text
 - Phase 6 groups all infrastructure/DB fixes together so Phases 7-9 build on a stable, trusted foundation
+- [Phase 06-foundation-stabilization]: Pin tailwindcss and @tailwindcss/postcss to exact 4.2.2 (no caret) — version mismatch between these packages causes PostCSS integration failures
+- [Phase 06-foundation-stabilization]: @theme inline required (not @theme) so var() CSS variable references are preserved without OKLCH conversion attempt in Tailwind v4
 
 ### Pending Todos
 
@@ -54,5 +57,5 @@ None.
 ## Session Continuity
 
 Last session: 2026-03-26
-Stopped at: v2.0 roadmap written — ROADMAP.md and STATE.md initialized, REQUIREMENTS.md traceability already populated
+Stopped at: Completed 06-01-PLAN.md — Tailwind v4.2.2 upgrade and globals.css migration
 Resume file: None
