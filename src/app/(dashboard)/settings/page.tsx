@@ -8,13 +8,24 @@ export default async function SettingsPage() {
   const { data: config, error } = await supabase
     .from("feedback_config")
     .select("*")
-    .single()
+    .maybeSingle()
 
-  if (error || !config) {
+  if (error) {
     return (
       <div className="p-8 text-center bg-destructive/10 text-destructive rounded-lg border border-destructive/20">
         <h2 className="text-xl font-bold">Error Loading Configuration</h2>
-        <p className="mt-2 text-sm">{error?.message || "No configuration found."}</p>
+        <p className="mt-2 text-sm">{error.message}</p>
+      </div>
+    )
+  }
+
+  if (!config) {
+    return (
+      <div className="p-8 text-center bg-muted rounded-lg border">
+        <h2 className="text-xl font-semibold">No Configuration Found</h2>
+        <p className="mt-2 text-sm text-muted-foreground">
+          Run <code className="font-mono text-xs bg-background px-1 py-0.5 rounded">npm run seed</code> to initialize the system configuration.
+        </p>
       </div>
     )
   }
