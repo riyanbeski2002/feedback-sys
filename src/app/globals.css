@@ -1,6 +1,70 @@
 @import "tailwindcss";
 
-@theme {
+:root {
+  --background: hsl(180 10% 98%);
+  --foreground: hsl(180 5% 10%);
+
+  --card: hsl(0 0% 100%);
+  --card-foreground: hsl(180 5% 10%);
+
+  --popover: hsl(0 0% 100%);
+  --popover-foreground: hsl(180 5% 10%);
+
+  /* Ziptrrip Teal: #72D3C4 */
+  --primary: hsl(171 53% 64%);
+  --primary-foreground: hsl(0 0% 100%);
+
+  --secondary: hsl(180 5% 96%);
+  --secondary-foreground: hsl(180 5% 10%);
+
+  --muted: hsl(180 5% 96%);
+  --muted-foreground: hsl(180 2% 45%);
+
+  --accent: hsl(171 53% 94%);
+  --accent-foreground: hsl(171 53% 34%);
+
+  /* Ziptrrip Coral: #F08080 */
+  --destructive: hsl(0 79% 72%);
+  --destructive-foreground: hsl(0 0% 100%);
+
+  --border: hsl(180 5% 92%);
+  --input: hsl(180 5% 92%);
+  --ring: hsl(171 53% 64%);
+
+  --radius: 0.75rem;
+}
+
+.dark {
+  --background: hsl(180 5% 5%);
+  --foreground: hsl(180 5% 95%);
+
+  --card: hsl(180 5% 8%);
+  --card-foreground: hsl(180 5% 95%);
+
+  --popover: hsl(180 5% 8%);
+  --popover-foreground: hsl(180 5% 95%);
+
+  --primary: hsl(171 53% 64%);
+  --primary-foreground: hsl(0 0% 100%);
+
+  --secondary: hsl(180 5% 15%);
+  --secondary-foreground: hsl(180 5% 95%);
+
+  --muted: hsl(180 5% 15%);
+  --muted-foreground: hsl(180 2% 65%);
+
+  --accent: hsl(171 53% 20%);
+  --accent-foreground: hsl(171 53% 80%);
+
+  --destructive: hsl(0 79% 72%);
+  --destructive-foreground: hsl(0 0% 100%);
+
+  --border: hsl(180 5% 15%);
+  --input: hsl(180 5% 15%);
+  --ring: hsl(171 53% 64%);
+}
+
+@theme inline {
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
@@ -31,72 +95,6 @@
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) - 2px);
   --radius-sm: calc(var(--radius) - 4px);
-}
-
-@layer base {
-  :root {
-    --background: 180 10% 98%;
-    --foreground: 180 5% 10%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 180 5% 10%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 180 5% 10%;
-
-    /* Ziptrrip Teal: #72D3C4 */
-    --primary: 171 53% 64%;
-    --primary-foreground: 0 0% 100%;
-
-    --secondary: 180 5% 96%;
-    --secondary-foreground: 180 5% 10%;
-
-    --muted: 180 5% 96%;
-    --muted-foreground: 180 2% 45%;
-
-    --accent: 171 53% 94%;
-    --accent-foreground: 171 53% 34%;
-
-    /* Ziptrrip Coral: #F08080 */
-    --destructive: 0 79% 72%;
-    --destructive-foreground: 0 0% 100%;
-
-    --border: 180 5% 92%;
-    --input: 180 5% 92%;
-    --ring: 171 53% 64%;
-
-    --radius: 0.75rem;
-  }
-
-  .dark {
-    --background: 180 5% 5%;
-    --foreground: 180 5% 95%;
-
-    --card: 180 5% 8%;
-    --card-foreground: 180 5% 95%;
-
-    --popover: 180 5% 8%;
-    --popover-foreground: 180 5% 95%;
-
-    --primary: 171 53% 64%;
-    --primary-foreground: 0 0% 100%;
-
-    --secondary: 180 5% 15%;
-    --secondary-foreground: 180 5% 95%;
-
-    --muted: 180 5% 15%;
-    --muted-foreground: 180 2% 65%;
-
-    --accent: 171 53% 20%;
-    --accent-foreground: 171 53% 80%;
-
-    --destructive: 0 79% 72%;
-    --destructive-foreground: 0 0% 100%;
-
-    --border: 180 5% 15%;
-    --input: 180 5% 15%;
-    --ring: 171 53% 64%;
-  }
 }
 
 @layer base {
