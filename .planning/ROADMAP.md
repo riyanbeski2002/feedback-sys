@@ -85,7 +85,12 @@ Success criteria:
   2. Running `npm run seed` twice consecutively creates exactly 6 hotels and 1 feedback_config row, not duplicates.
   3. The Settings page loads without error on a fresh database and on a database that has been seeded multiple times.
   4. Saving settings from the Settings page completes without a PGRST116 error regardless of how many prior saves have occurred.
-**Plans**: TBD
+**Plans**: 3 plans
+
+Plans:
+- [ ] 06-01-PLAN.md — Upgrade Tailwind to stable v4.2.2 and migrate globals.css to correct v4 token structure
+- [ ] 06-02-PLAN.md — Add DB singleton constraint to feedback_config and fix Settings page read/save
+- [ ] 06-03-PLAN.md — Rewrite seed script as idempotent with 14 demo feedback rows (Indian corporate context)
 
 ### Phase 7: Design Mockups
 **Goal**: Produce Pencil MCP-approved mockups for every screen and all four notification channel formats before any UI code is written or changed.
@@ -131,7 +136,7 @@ Phases execute in numeric order: 6 → 7 → 8 → 9
 | 3. Scoring & Ranking | v1.0 | - | Complete | 2026-03-25 |
 | 4. Admin & Config | v1.0 | - | Complete | 2026-03-25 |
 | 5. Multi-channel & AI | v1.0 | - | Complete | 2026-03-26 |
-| 6. Foundation Stabilization | v2.0 | 0/TBD | Not started | - |
+| 6. Foundation Stabilization | v2.0 | 0/3 | Not started | - |
 | 7. Design Mockups | v2.0 | 0/TBD | Not started | - |
 | 8. Design Implementation | v2.0 | 0/TBD | Not started | - |
 | 9. Full Functionality | v2.0 | 0/TBD | Not started | - |
