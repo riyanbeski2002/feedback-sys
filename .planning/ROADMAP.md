@@ -100,7 +100,14 @@ Plans:
   1. Every app screen (Hotels, Bookings, Feedback Form, Success, Admin, Settings, Notifications) has an approved Pencil MCP mockup showing the Ziptrrip teal palette, Inter typography, and rounded-full pill elements.
   2. Notification mockups show pixel-accurate designs for Email, Slack, Teams, and WhatsApp formats — including traveller name, hotel name, score, and feedback excerpt populated from a realistic example submission.
   3. No UI implementation code is committed until mockup approval is confirmed.
-**Plans**: TBD
+**Plans**: 5 plans
+
+Plans:
+- [ ] 07-01-PLAN.md — Create .pen file, register Ziptrrip design tokens, design App Shell frame
+- [ ] 07-02-PLAN.md — Design Hotels (happy + empty) and Bookings (happy + empty) screens
+- [ ] 07-03-PLAN.md — Design Admin dashboard and Settings screens (3 states)
+- [ ] 07-04-PLAN.md — Design Notifications 2x2 channel grid (Email/Slack/Teams/WhatsApp)
+- [ ] 07-05-PLAN.md — Design Feedback Form (desktop + validation + mobile 375px) and Success screen; human approval gate
 
 ### Phase 8: Design Implementation
 **Goal**: Apply the approved Ziptrrip visual identity across all components — teal color tokens, semantic badge colors, pill elements, and B2B sidebar/header density — replacing all hardcoded colors.
@@ -137,9 +144,9 @@ Phases execute in numeric order: 6 → 7 → 8 → 9
 | 4. Admin & Config | v1.0 | - | Complete | 2026-03-25 |
 | 5. Multi-channel & AI | v1.0 | - | Complete | 2026-03-26 |
 | 6. Foundation Stabilization | 3/3 | Complete   | 2026-03-26 | - |
-| 7. Design Mockups | v2.0 | 0/TBD | Not started | - |
+| 7. Design Mockups | v2.0 | 0/5 | Planned | - |
 | 8. Design Implementation | v2.0 | 0/TBD | Not started | - |
 | 9. Full Functionality | v2.0 | 0/TBD | Not started | - |
 
 ---
-*Last updated: 2026-03-26 after v2.0 roadmap creation*
+*Last updated: 2026-03-26 after Phase 7 plans created*
