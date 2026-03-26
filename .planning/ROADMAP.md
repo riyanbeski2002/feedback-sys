@@ -103,9 +103,9 @@ Plans:
 **Plans**: 5 plans
 
 Plans:
-- [ ] 07-01-PLAN.md — Create .pen file, register Ziptrrip design tokens, design App Shell frame
-- [ ] 07-02-PLAN.md — Design Hotels (happy + empty) and Bookings (happy + empty) screens
-- [ ] 07-03-PLAN.md — Design Admin dashboard and Settings screens (3 states)
+- [x] 07-01-PLAN.md — Create .pen file, register Ziptrrip design tokens, design App Shell frame
+- [x] 07-02-PLAN.md — Design Hotels (happy + empty) and Bookings (happy + empty) screens
+- [x] 07-03-PLAN.md — Design Admin dashboard and Settings screens (3 states)
 - [ ] 07-04-PLAN.md — Design Notifications 2x2 channel grid (Email/Slack/Teams/WhatsApp)
 - [ ] 07-05-PLAN.md — Design Feedback Form (desktop + validation + mobile 375px) and Success screen; human approval gate
 
@@ -144,7 +144,7 @@ Phases execute in numeric order: 6 → 7 → 8 → 9
 | 4. Admin & Config | v1.0 | - | Complete | 2026-03-25 |
 | 5. Multi-channel & AI | v1.0 | - | Complete | 2026-03-26 |
 | 6. Foundation Stabilization | 3/3 | Complete   | 2026-03-26 | - |
-| 7. Design Mockups | 2/5 | In Progress|  | - |
+| 7. Design Mockups | 3/5 | In Progress|  | - |
 | 8. Design Implementation | v2.0 | 0/TBD | Not started | - |
 | 9. Full Functionality | v2.0 | 0/TBD | Not started | - |
 
