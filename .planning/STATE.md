@@ -5,16 +5,16 @@
 See: .planning/PROJECT.md (updated 2026-03-26)
 
 **Core value:** Create a reliable, automated feedback intelligence loop that improves hotel recommendation quality based on verified guest experiences.
-**Current focus:** Milestone v2.0 — Phase 6: Foundation Stabilization
+**Current focus:** Milestone v2.0 — Phase 7: Design Mockups
 
 ## Current Position
 
-Phase: 6 of 9 (Foundation Stabilization)
-Plan: 3 of 3 in current phase (COMPLETE)
-Status: Phase 6 Complete
-Last activity: 2026-03-26 — 06-03 complete: idempotent seed script with 14 demo feedback rows
+Phase: 7 of 9 (Design Mockups)
+Plan: 1 of 5 complete (07-01 done)
+Status: Phase 7 In Progress
+Last activity: 2026-03-26 — 07-01 complete: Ziptrrip tokens + App Shell frame (xBwvY) in pencil-new.pen
 
-Progress: [█████░░░░░] ~50% (v1.0 complete, v2.0 starting)
+Progress: [█████░░░░░] ~55% (Phase 7 started, App Shell foundation complete)
 
 ## Performance Metrics
 
@@ -35,6 +35,7 @@ Progress: [█████░░░░░] ~50% (v1.0 complete, v2.0 starting)
 | Phase 06-foundation-stabilization P01 | 1 | 2 tasks | 3 files |
 | Phase 06-foundation-stabilization P02 | 1 | 3 tasks | 3 files |
 | Phase 06-foundation-stabilization P03 | 1 | 2 tasks | 4 files |
+| Phase 07-design-mockups P01 | 37 | 2 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -51,6 +52,9 @@ Progress: [█████░░░░░] ~50% (v1.0 complete, v2.0 starting)
 - [Phase 06-foundation-stabilization]: Seed idempotency via hotel count guard (count > 0 exits early) + stable UUID constants + upsert with explicit onConflict on every table
 - [Phase 06-foundation-stabilization]: feedback upsert uses onConflict: booking_id (unique constraint in schema); feedback_config upsert uses onConflict: singleton
 - [Phase 06-foundation-stabilization]: dotenv must be installed with --legacy-peer-deps due to React 19 / next-themes@0.3.0 peer conflict in this project
+- [Phase 07-design-mockups]: App Shell node ID xBwvY in pencil-new.pen — Wave 2 plans (07-02 through 07-05) use C(xBwvY) to embed the shell
+- [Phase 07-design-mockups]: Pencil MCP desktop app (--app desktop) used via subprocess stdio, connecting to Pencil.app at /Users/User/Applications/Pencil.app
+- [Phase 07-design-mockups]: All Ziptrrip tokens set with replace:true to clear previous incorrect variables; 12 canonical tokens now registered
 
 ### Pending Todos
 
@@ -64,5 +68,5 @@ None.
 ## Session Continuity
 
 Last session: 2026-03-26
-Stopped at: Completed 06-03-PLAN.md — idempotent seed script with 14 demo feedback rows and dotenv devDep
+Stopped at: Completed 07-01-PLAN.md — Ziptrrip design tokens + App Shell frame (xBwvY) built in pencil-new.pen
 Resume file: None

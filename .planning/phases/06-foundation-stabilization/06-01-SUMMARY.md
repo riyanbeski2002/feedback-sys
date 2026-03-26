@@ -113,6 +113,14 @@ None — no external service configuration required.
 - Phase 08 (CSS implementation) has a clean, trusted token system to build on
 - Color values themselves (the HSL numbers) are unchanged — Phase 8 owns color value work per plan
 
+## Self-Check: PASSED
+
+- package.json: FOUND, tailwindcss=4.2.2, @tailwindcss/postcss=4.2.2 (exact pins)
+- src/app/globals.css: FOUND, @theme inline present, :root outside @layer base, 38 hsl() wrappers, no bare HSL values
+- 06-01-SUMMARY.md: FOUND
+- Task commits: 1b30b35 (chore), 215d51e (feat) — both verified in git log
+- npm run build: passed cleanly
+
 ---
 *Phase: 06-foundation-stabilization*
 *Completed: 2026-03-26*

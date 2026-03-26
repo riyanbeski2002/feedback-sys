@@ -37,7 +37,7 @@
 - [x] **FND-04**: `dotenv` is listed in devDependencies so seed script loads env vars reliably
 
 ### Design (DSG)
-- [ ] **DSG-01**: All app screens have Pencil MCP-approved mockups before any UI code is written
+- [x] **DSG-01**: All app screens have Pencil MCP-approved mockups before any UI code is written
 - [ ] **DSG-02**: Pencil MCP mockups include pixel-accurate notification format designs for Email, Slack, Teams, and WhatsApp showing how feedback alerts appear in each channel
 - [ ] **DSG-03**: Hotel status badges use teal-based color palette (not hardcoded green/slate/orange/red)
 - [ ] **DSG-04**: Admin metric cards use design system colors (no hardcoded yellow or blue)
@@ -94,7 +94,7 @@
 | FND-02 | Phase 6 | Complete |
 | FND-03 | Phase 6 | Complete |
 | FND-04 | Phase 6 | Complete |
-| DSG-01 | Phase 7 | Pending |
+| DSG-01 | Phase 7 | Complete |
 | DSG-02 | Phase 7 | Pending |
 | DSG-03 | Phase 8 | Pending |
 | DSG-04 | Phase 8 | Pending |
