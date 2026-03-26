@@ -63,30 +63,35 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
               <Link href="/">
-                <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-                  <CheckCircle2 className="size-4" />
+                <div className="flex aspect-square size-8 items-center justify-center rounded-md bg-primary text-primary-foreground">
+                  <CheckCircle2 className="size-5" />
                 </div>
                 <div className="flex flex-col gap-0.5 leading-none">
-                  <span className="font-semibold">Ziptrrip</span>
-                  <span className="text-xs text-muted-foreground">Feedback Intel</span>
+                  <span className="font-bold text-base tracking-tight">ziptrrip</span>
+                  <span className="text-[10px] uppercase font-bold text-muted-foreground tracking-widest">Feedback Intel</span>
                 </div>
               </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
-      <SidebarContent>
-        <SidebarMenu>
+      <SidebarContent className="px-2">
+        <SidebarMenu className="gap-1">
           {data.navMain.map((item) => (
             <SidebarMenuItem key={item.title}>
               <SidebarMenuButton
                 asChild
                 isActive={pathname === item.url}
                 tooltip={item.title}
+                className={`transition-all duration-200 h-11 ${
+                  pathname === item.url 
+                    ? "bg-primary/10 text-primary hover:bg-primary/15 hover:text-primary" 
+                    : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                }`}
               >
-                <Link href={item.url}>
-                  <item.icon />
-                  <span>{item.title}</span>
+                <Link href={item.url} className="flex items-center gap-3">
+                  <item.icon className={`size-5 ${pathname === item.url ? "text-primary" : ""}`} />
+                  <span className="font-semibold">{item.title}</span>
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
@@ -95,9 +100,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarContent>
       <SidebarFooter>
         <div className="p-4">
-          <div className="rounded-lg bg-muted p-4">
-            <p className="text-xs font-medium">Verified Stays Only</p>
-            <p className="mt-1 text-[10px] text-muted-foreground">
+          <div className="rounded-xl bg-primary/5 p-4 border border-primary/10">
+            <p className="text-xs font-bold text-primary">Verified Stays Only</p>
+            <p className="mt-1 text-[10px] text-muted-foreground leading-relaxed">
               Feedback loop active for Bangalore, Mumbai, Delhi.
             </p>
           </div>

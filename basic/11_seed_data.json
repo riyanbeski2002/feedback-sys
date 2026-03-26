@@ -1,0 +1,39 @@
+{
+  "hotels": [
+    {"name": "Grand Meridian", "location": "Bengaluru", "avg_score": 4.4, "total_feedbacks": 11, "status_bucket": "stable"},
+    {"name": "Skyline Suites", "location": "Mumbai", "avg_score": 4.7, "total_feedbacks": 18, "status_bucket": "top_rated"},
+    {"name": "Harbor Crest", "location": "Chennai", "avg_score": 3.9, "total_feedbacks": 8, "status_bucket": "stable"},
+    {"name": "Urban Nest", "location": "Hyderabad", "avg_score": 2.8, "total_feedbacks": 6, "status_bucket": "needs_review"},
+    {"name": "Blue Orchid Residency", "location": "Pune", "avg_score": 4.1, "total_feedbacks": 9, "status_bucket": "stable"},
+    {"name": "Maple Leaf Inn", "location": "Delhi", "avg_score": 1.9, "total_feedbacks": 5, "status_bucket": "flagged"}
+  ],
+  "bookings": [
+    {"traveller_name": "Riyan Beski", "traveller_email": "riyan@example.com", "hotel_name": "Grand Meridian", "status": "booked"},
+    {"traveller_name": "Ananya Rao", "traveller_email": "ananya@example.com", "hotel_name": "Skyline Suites", "status": "completed"},
+    {"traveller_name": "Rahul Menon", "traveller_email": "rahul@example.com", "hotel_name": "Urban Nest", "status": "completed"},
+    {"traveller_name": "Priya S", "traveller_email": "priya@example.com", "hotel_name": "Blue Orchid Residency", "status": "checked_in"},
+    {"traveller_name": "Karthik N", "traveller_email": "karthik@example.com", "hotel_name": "Harbor Crest", "status": "booked"}
+  ],
+  "feedback_examples": [
+    {
+      "hotel_name": "Urban Nest",
+      "value_for_money": 2,
+      "service_quality": 2,
+      "room_cleanliness": 1,
+      "amenities_provided": 2,
+      "repeat_stay_likelihood": 1,
+      "recommend_to_colleagues": 1,
+      "comment": "Rooms were not clean and service was slow"
+    },
+    {
+      "hotel_name": "Skyline Suites",
+      "value_for_money": 4,
+      "service_quality": 5,
+      "room_cleanliness": 5,
+      "amenities_provided": 4,
+      "repeat_stay_likelihood": 5,
+      "recommend_to_colleagues": 5,
+      "comment": "Great service and extremely clean rooms"
+    }
+  ]
+}

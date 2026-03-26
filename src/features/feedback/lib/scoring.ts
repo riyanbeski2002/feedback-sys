@@ -30,3 +30,21 @@ export function calculateWeightedScore(ratings: FeedbackRatings): number {
   // Return rounded to 2 decimal places
   return Math.round(totalScore * 100) / 100
 }
+
+export function calculateWeightedRanking(avgScore: number, totalFeedbacks: number): number {
+  // Simple Bayesian Average variant
+  // (v / (v+m)) * R + (m / (v+m)) * C
+  // v = totalFeedbacks
+  // m = min reviews (say 5)
+  // R = avgScore
+  // C = global mean (say 3.0)
+  
+  const m = 5
+  const C = 3.0
+  const v = totalFeedbacks
+  const R = avgScore
+
+  const weightedScore = (v / (v + m)) * R + (m / (v + m)) * C
+  
+  return Math.round(weightedScore * 100) / 100
+}
