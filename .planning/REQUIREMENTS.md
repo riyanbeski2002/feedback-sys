@@ -45,9 +45,9 @@
 - [ ] **DSG-06**: Sidebar and header match Ziptrrip B2B density, spacing, and navigation layout
 
 ### Data & Bugs (DAT)
-- [ ] **DAT-01**: Settings page loads without error regardless of how many rows exist in `feedback_config`
-- [ ] **DAT-02**: Saving settings uses upsert so no duplicate config rows are ever created
-- [ ] **DAT-03**: `feedback_config` has a DB-level uniqueness constraint preventing multiple rows
+- [x] **DAT-01**: Settings page loads without error regardless of how many rows exist in `feedback_config`
+- [x] **DAT-02**: Saving settings uses upsert so no duplicate config rows are ever created
+- [x] **DAT-03**: `feedback_config` has a DB-level uniqueness constraint preventing multiple rows
 - [ ] **DAT-04**: Database contains 12–15 pre-submitted feedback rows with real names, scores, and comments
 
 ### Features (FTR)
@@ -100,9 +100,9 @@
 | DSG-04 | Phase 8 | Pending |
 | DSG-05 | Phase 8 | Pending |
 | DSG-06 | Phase 8 | Pending |
-| DAT-01 | Phase 6 | Pending |
-| DAT-02 | Phase 6 | Pending |
-| DAT-03 | Phase 6 | Pending |
+| DAT-01 | Phase 6 | Complete |
+| DAT-02 | Phase 6 | Complete |
+| DAT-03 | Phase 6 | Complete |
 | DAT-04 | Phase 6 | Pending |
 | FTR-01 | Phase 9 | Pending |
 | FTR-02 | Phase 9 | Pending |

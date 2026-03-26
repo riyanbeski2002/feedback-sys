@@ -10,9 +10,9 @@ See: .planning/PROJECT.md (updated 2026-03-26)
 ## Current Position
 
 Phase: 6 of 9 (Foundation Stabilization)
-Plan: 1 of 3 in current phase
+Plan: 2 of 3 in current phase
 Status: In Progress
-Last activity: 2026-03-26 — 06-01 complete: Tailwind v4.2.2 upgrade and globals.css migration
+Last activity: 2026-03-26 — 06-02 complete: feedback_config singleton constraint + settings page fix
 
 Progress: [█████░░░░░] ~50% (v1.0 complete, v2.0 starting)
 
@@ -33,6 +33,7 @@ Progress: [█████░░░░░] ~50% (v1.0 complete, v2.0 starting)
 
 *Updated after each plan completion*
 | Phase 06-foundation-stabilization P01 | 1 | 2 tasks | 3 files |
+| Phase 06-foundation-stabilization P02 | 1 | 3 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -44,6 +45,8 @@ Progress: [█████░░░░░] ~50% (v1.0 complete, v2.0 starting)
 - Phase 6 groups all infrastructure/DB fixes together so Phases 7-9 build on a stable, trusted foundation
 - [Phase 06-foundation-stabilization]: Pin tailwindcss and @tailwindcss/postcss to exact 4.2.2 (no caret) — version mismatch between these packages causes PostCSS integration failures
 - [Phase 06-foundation-stabilization]: @theme inline required (not @theme) so var() CSS variable references are preserved without OKLCH conversion attempt in Tailwind v4
+- [Phase 06-foundation-stabilization]: Use .maybeSingle() for optional singleton rows in Supabase — .single() throws PGRST116 on 0 rows
+- [Phase 06-foundation-stabilization]: feedback_config singleton pattern — boolean sentinel column + UNIQUE INDEX + upsert onConflict enables idempotent settings saves
 
 ### Pending Todos
 
@@ -51,11 +54,11 @@ None.
 
 ### Blockers/Concerns
 
-- [Phase 6] `feedback_config` singleton migration requires deleting duplicate rows first — safe in dev, needs care if Supabase project has any production data
+- [Phase 6] feedback_config singleton migration RESOLVED in 06-02 — migration SQL created, constraint enforced at DB level
 - [Phase 7] Pencil MCP code generation is known to miss shadcn component substitutions and responsive breakpoints — treat generated code as reference only, manual review gate required before commit
 
 ## Session Continuity
 
 Last session: 2026-03-26
-Stopped at: Completed 06-01-PLAN.md — Tailwind v4.2.2 upgrade and globals.css migration
+Stopped at: Completed 06-02-PLAN.md — feedback_config singleton constraint and settings page fix
 Resume file: None
