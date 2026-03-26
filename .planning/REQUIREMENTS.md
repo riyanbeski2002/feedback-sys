@@ -33,8 +33,8 @@
 ### Foundation (FND)
 - [x] **FND-01**: App runs on Tailwind CSS stable v4 in both dev and production builds
 - [x] **FND-02**: All CSS custom properties use `hsl()` wrappers and `@theme inline` so teal tokens apply correctly across light and dark mode
-- [ ] **FND-03**: Seed script can be run multiple times without creating duplicate hotels, bookings, or config rows
-- [ ] **FND-04**: `dotenv` is listed in devDependencies so seed script loads env vars reliably
+- [x] **FND-03**: Seed script can be run multiple times without creating duplicate hotels, bookings, or config rows
+- [x] **FND-04**: `dotenv` is listed in devDependencies so seed script loads env vars reliably
 
 ### Design (DSG)
 - [ ] **DSG-01**: All app screens have Pencil MCP-approved mockups before any UI code is written
@@ -48,7 +48,7 @@
 - [x] **DAT-01**: Settings page loads without error regardless of how many rows exist in `feedback_config`
 - [x] **DAT-02**: Saving settings uses upsert so no duplicate config rows are ever created
 - [x] **DAT-03**: `feedback_config` has a DB-level uniqueness constraint preventing multiple rows
-- [ ] **DAT-04**: Database contains 12–15 pre-submitted feedback rows with real names, scores, and comments
+- [x] **DAT-04**: Database contains 12–15 pre-submitted feedback rows with real names, scores, and comments
 
 ### Features (FTR)
 - [ ] **FTR-01**: Notification previews for all 4 channels show data from the most recent real feedback submission (not static sample data)
@@ -92,8 +92,8 @@
 |--------|-------|--------|
 | FND-01 | Phase 6 | Complete |
 | FND-02 | Phase 6 | Complete |
-| FND-03 | Phase 6 | Pending |
-| FND-04 | Phase 6 | Pending |
+| FND-03 | Phase 6 | Complete |
+| FND-04 | Phase 6 | Complete |
 | DSG-01 | Phase 7 | Pending |
 | DSG-02 | Phase 7 | Pending |
 | DSG-03 | Phase 8 | Pending |
@@ -103,7 +103,7 @@
 | DAT-01 | Phase 6 | Complete |
 | DAT-02 | Phase 6 | Complete |
 | DAT-03 | Phase 6 | Complete |
-| DAT-04 | Phase 6 | Pending |
+| DAT-04 | Phase 6 | Complete |
 | FTR-01 | Phase 9 | Pending |
 | FTR-02 | Phase 9 | Pending |
 

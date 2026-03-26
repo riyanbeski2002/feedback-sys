@@ -10,9 +10,9 @@ See: .planning/PROJECT.md (updated 2026-03-26)
 ## Current Position
 
 Phase: 6 of 9 (Foundation Stabilization)
-Plan: 2 of 3 in current phase
-Status: In Progress
-Last activity: 2026-03-26 — 06-02 complete: feedback_config singleton constraint + settings page fix
+Plan: 3 of 3 in current phase (COMPLETE)
+Status: Phase 6 Complete
+Last activity: 2026-03-26 — 06-03 complete: idempotent seed script with 14 demo feedback rows
 
 Progress: [█████░░░░░] ~50% (v1.0 complete, v2.0 starting)
 
@@ -34,6 +34,7 @@ Progress: [█████░░░░░] ~50% (v1.0 complete, v2.0 starting)
 *Updated after each plan completion*
 | Phase 06-foundation-stabilization P01 | 1 | 2 tasks | 3 files |
 | Phase 06-foundation-stabilization P02 | 1 | 3 tasks | 3 files |
+| Phase 06-foundation-stabilization P03 | 1 | 2 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -47,6 +48,9 @@ Progress: [█████░░░░░] ~50% (v1.0 complete, v2.0 starting)
 - [Phase 06-foundation-stabilization]: @theme inline required (not @theme) so var() CSS variable references are preserved without OKLCH conversion attempt in Tailwind v4
 - [Phase 06-foundation-stabilization]: Use .maybeSingle() for optional singleton rows in Supabase — .single() throws PGRST116 on 0 rows
 - [Phase 06-foundation-stabilization]: feedback_config singleton pattern — boolean sentinel column + UNIQUE INDEX + upsert onConflict enables idempotent settings saves
+- [Phase 06-foundation-stabilization]: Seed idempotency via hotel count guard (count > 0 exits early) + stable UUID constants + upsert with explicit onConflict on every table
+- [Phase 06-foundation-stabilization]: feedback upsert uses onConflict: booking_id (unique constraint in schema); feedback_config upsert uses onConflict: singleton
+- [Phase 06-foundation-stabilization]: dotenv must be installed with --legacy-peer-deps due to React 19 / next-themes@0.3.0 peer conflict in this project
 
 ### Pending Todos
 
@@ -60,5 +64,5 @@ None.
 ## Session Continuity
 
 Last session: 2026-03-26
-Stopped at: Completed 06-02-PLAN.md — feedback_config singleton constraint and settings page fix
+Stopped at: Completed 06-03-PLAN.md — idempotent seed script with 14 demo feedback rows and dotenv devDep
 Resume file: None
