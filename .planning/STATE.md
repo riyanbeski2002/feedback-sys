@@ -10,11 +10,11 @@ See: .planning/PROJECT.md (updated 2026-03-26)
 ## Current Position
 
 Phase: 7 of 9 (Design Mockups)
-Plan: 1 of 5 complete (07-01 done)
+Plan: 2 of 5 complete (07-01, 07-02 done)
 Status: Phase 7 In Progress
-Last activity: 2026-03-26 — 07-01 complete: Ziptrrip tokens + App Shell frame (xBwvY) in pencil-new.pen
+Last activity: 2026-03-26 — 07-02 complete: Hotels + Bookings screens (happy path + empty state) designed and exported as PNGs
 
-Progress: [█████░░░░░] ~55% (Phase 7 started, App Shell foundation complete)
+Progress: [██████░░░░] ~60% (Phase 7 in progress, Hotels and Bookings screens complete)
 
 ## Performance Metrics
 
@@ -36,6 +36,7 @@ Progress: [█████░░░░░] ~55% (Phase 7 started, App Shell foun
 | Phase 06-foundation-stabilization P02 | 1 | 3 tasks | 3 files |
 | Phase 06-foundation-stabilization P03 | 1 | 2 tasks | 4 files |
 | Phase 07-design-mockups P01 | 37 | 2 tasks | 2 files |
+| Phase 07-design-mockups P02 | 30 | 2 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -55,6 +56,8 @@ Progress: [█████░░░░░] ~55% (Phase 7 started, App Shell foun
 - [Phase 07-design-mockups]: App Shell node ID xBwvY in pencil-new.pen — Wave 2 plans (07-02 through 07-05) use C(xBwvY) to embed the shell
 - [Phase 07-design-mockups]: Pencil MCP desktop app (--app desktop) used via subprocess stdio, connecting to Pencil.app at /Users/User/Applications/Pencil.app
 - [Phase 07-design-mockups]: All Ziptrrip tokens set with replace:true to clear previous incorrect variables; 12 canonical tokens now registered
+- [Phase 07-design-mockups]: Status badge palette uses 4 teal-derived colors: Top Rated (#E8F9F7), Reliable (#E8F8F0), Needs Review (#FEF3E8), Flagged (#FDE8E8) — Phase 8 DSG-03 visual contract
+- [Phase 07-design-mockups]: Submit Feedback CTA uses teal outline pill (stroke #72D3C4, cornerRadius:999) on Completed booking rows
 
 ### Pending Todos
 
@@ -68,5 +71,5 @@ None.
 ## Session Continuity
 
 Last session: 2026-03-26
-Stopped at: Completed 07-01-PLAN.md — Ziptrrip design tokens + App Shell frame (xBwvY) built in pencil-new.pen
+Stopped at: Completed 07-02-PLAN.md — Hotels and Bookings screens (happy path + empty state) designed and exported as PNGs
 Resume file: None
