@@ -118,7 +118,11 @@ Plans:
   2. Admin metric cards use design system color tokens — no hardcoded yellow or blue inline styles visible in the DOM.
   3. Every badge and chip element in the UI renders with `rounded-full` pill shape matching the Ziptrrip design reference.
   4. The sidebar and header match the Ziptrrip B2B density: navigation items are compact, spacing follows the 4px grid, and the layout matches the approved mockup from Phase 7.
-**Plans**: TBD
+**Plans**: 2 plans
+
+Plans:
+- [ ] 08-01-PLAN.md — Audit and fix DSG-03/04/05 residuals (teal flash animation in hotel-card.tsx)
+- [ ] 08-02-PLAN.md — DSG-06 sidebar/header B2B density implementation (site-header.tsx + app-sidebar.tsx)
 
 ### Phase 9: Full Functionality
 **Goal**: Complete the two remaining end-to-end capability gaps — dynamic notification previews that read from real feedback data, and live score recalculation when admin changes scoring weights.
