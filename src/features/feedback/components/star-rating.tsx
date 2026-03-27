@@ -36,7 +36,7 @@ export function StarRating({ value, onChange, disabled, max = 5 }: StarRatingPro
             <Star
               className={cn(
                 "size-6",
-                isActive ? "fill-yellow-400 text-yellow-400" : "text-muted-foreground"
+                isActive ? "fill-[var(--rating-fill)] text-[var(--rating-fill)]" : "text-muted-foreground"
               )}
             />
             <span className="sr-only">Rate {starValue} out of {max}</span>

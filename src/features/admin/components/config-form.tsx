@@ -147,19 +147,19 @@ export function ConfigForm({ initialConfig }: ConfigFormProps) {
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="grid grid-cols-2 items-center gap-4">
-              <label className="text-sm font-medium text-green-600">Top Rated (Min)</label>
+              <label className="text-sm font-medium text-[var(--status-top-rated-text)]">Top Rated (Min)</label>
               <Input 
                 type="number" step="0.1" 
                 value={config.boost_threshold} 
                 onChange={(e) => setConfig({ ...config, boost_threshold: Number(e.target.value) })}
               />
-              <label className="text-sm font-medium text-slate-600">Neutral (Min)</label>
+              <label className="text-sm font-medium text-[var(--status-stable-text)]">Neutral (Min)</label>
               <Input 
                 type="number" step="0.1" 
                 value={config.neutral_threshold} 
                 onChange={(e) => setConfig({ ...config, neutral_threshold: Number(e.target.value) })}
               />
-              <label className="text-sm font-medium text-red-600">Flagged (Below)</label>
+              <label className="text-sm font-medium text-[var(--status-flagged-text)]">Flagged (Below)</label>
               <Input 
                 type="number" step="0.1" 
                 value={config.flagged_threshold} 

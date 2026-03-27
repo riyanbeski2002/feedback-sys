@@ -26,7 +26,7 @@ export function SlackPreview({
 
       <CardContent className="pt-6 space-y-4">
         <div className="flex gap-3">
-          <div className="size-10 rounded-md bg-orange-500 flex items-center justify-center font-bold">Z</div>
+          <div className="size-10 rounded-md bg-[var(--primary)] flex items-center justify-center font-bold text-black">Z</div>
           <div className="flex-1 space-y-1">
             <div className="flex items-center gap-2">
               <span className="font-bold text-sm">Ziptrrip Feedback</span>

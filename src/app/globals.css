@@ -32,6 +32,29 @@
   --ring: hsl(171 53% 64%);
 
   --radius: 0.75rem;
+
+  /* Status badge palette — Ziptrrip Phase 7 tokens */
+  --status-top-rated-bg: hsl(171 53% 94%);
+  --status-top-rated-text: hsl(171 53% 30%);
+  --status-top-rated-border: hsl(171 53% 80%);
+
+  --status-stable-bg: hsl(150 40% 94%);
+  --status-stable-text: hsl(150 40% 28%);
+  --status-stable-border: hsl(150 40% 78%);
+
+  --status-needs-review-bg: hsl(32 100% 95%);
+  --status-needs-review-text: hsl(32 80% 38%);
+  --status-needs-review-border: hsl(32 80% 80%);
+
+  --status-flagged-bg: hsl(0 100% 96%);
+  --status-flagged-text: hsl(0 65% 44%);
+  --status-flagged-border: hsl(0 65% 82%);
+
+  /* Utility tokens */
+  --rating-fill: hsl(45 100% 58%);
+  --metric-highlight: hsl(45 100% 95%);
+  --metric-info: hsl(217 91% 60%);
+  --metric-info-bg: hsl(217 91% 95%);
 }
 
 .dark {
@@ -62,6 +85,29 @@
   --border: hsl(180 5% 15%);
   --input: hsl(180 5% 15%);
   --ring: hsl(171 53% 64%);
+
+  /* Status badge palette — dark mode */
+  --status-top-rated-bg: hsl(171 53% 15%);
+  --status-top-rated-text: hsl(171 53% 70%);
+  --status-top-rated-border: hsl(171 53% 30%);
+
+  --status-stable-bg: hsl(150 40% 15%);
+  --status-stable-text: hsl(150 40% 65%);
+  --status-stable-border: hsl(150 40% 30%);
+
+  --status-needs-review-bg: hsl(32 80% 15%);
+  --status-needs-review-text: hsl(32 80% 72%);
+  --status-needs-review-border: hsl(32 80% 35%);
+
+  --status-flagged-bg: hsl(0 65% 15%);
+  --status-flagged-text: hsl(0 79% 72%);
+  --status-flagged-border: hsl(0 65% 35%);
+
+  /* Utility tokens — dark mode */
+  --rating-fill: hsl(45 100% 58%);
+  --metric-highlight: hsl(45 80% 15%);
+  --metric-info: hsl(217 91% 60%);
+  --metric-info-bg: hsl(217 80% 15%);
 }
 
 @theme inline {
@@ -91,6 +137,26 @@
 
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
+
+  /* Status badge colors */
+  --color-status-top-rated-bg: var(--status-top-rated-bg);
+  --color-status-top-rated-text: var(--status-top-rated-text);
+  --color-status-top-rated-border: var(--status-top-rated-border);
+  --color-status-stable-bg: var(--status-stable-bg);
+  --color-status-stable-text: var(--status-stable-text);
+  --color-status-stable-border: var(--status-stable-border);
+  --color-status-needs-review-bg: var(--status-needs-review-bg);
+  --color-status-needs-review-text: var(--status-needs-review-text);
+  --color-status-needs-review-border: var(--status-needs-review-border);
+  --color-status-flagged-bg: var(--status-flagged-bg);
+  --color-status-flagged-text: var(--status-flagged-text);
+  --color-status-flagged-border: var(--status-flagged-border);
+
+  /* Utility tokens */
+  --color-rating-fill: var(--rating-fill);
+  --color-metric-highlight: var(--metric-highlight);
+  --color-metric-info: var(--metric-info);
+  --color-metric-info-bg: var(--metric-info-bg);
 
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) - 2px);

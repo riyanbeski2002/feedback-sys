@@ -25,7 +25,7 @@ export function RecentFeedbackFeed({ feedbacks }: RecentFeedbackFeedProps) {
     switch (label?.toLowerCase()) {
       case "positive": return "text-primary bg-primary/10 border-primary/20"
       case "negative": return "text-destructive bg-destructive/10 border-destructive/20"
-      case "neutral": return "text-slate-600 bg-slate-100 border-slate-200"
+      case "neutral": return "text-[var(--status-stable-text)] bg-[var(--status-stable-bg)] border-[var(--status-stable-border)]"
       default: return "text-muted-foreground bg-muted/50"
     }
   }

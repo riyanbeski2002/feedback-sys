@@ -6,8 +6,8 @@ export function DuplicateError() {
   return (
     <div className="mx-auto max-w-md space-y-8 pt-20">
       <div className="flex flex-col items-center space-y-4 text-center">
-        <div className="rounded-full bg-yellow-100 p-4">
-          <AlertCircle className="size-12 text-yellow-600" />
+        <div className="rounded-full bg-[var(--status-needs-review-bg)] p-4">
+          <AlertCircle className="size-12 text-[var(--status-needs-review-text)]" />
         </div>
         <h1 className="text-3xl font-bold tracking-tight">Feedback Already Submitted</h1>
         <p className="text-muted-foreground">

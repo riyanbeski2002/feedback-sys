@@ -38,10 +38,10 @@ export function HotelCard({ hotel }: HotelCardProps) {
   }, [hotel.avg_score, hotel.last_feedback_at])
 
   const getStatusColor = (score: number) => {
-    if (score >= 4.5) return "bg-green-100 text-green-800 border-green-200 dark:bg-green-900 dark:text-green-100"
-    if (score >= 3.0) return "bg-slate-100 text-slate-800 border-slate-200 dark:bg-slate-800 dark:text-slate-100"
-    if (score >= 2.0) return "bg-orange-100 text-orange-800 border-orange-200 dark:bg-orange-900 dark:text-orange-100"
-    return "bg-red-100 text-red-800 border-red-200 dark:bg-red-900 dark:text-red-100"
+    if (score >= 4.5) return "bg-[var(--status-top-rated-bg)] text-[var(--status-top-rated-text)] border-[var(--status-top-rated-border)]"
+    if (score >= 3.0) return "bg-[var(--status-stable-bg)] text-[var(--status-stable-text)] border-[var(--status-stable-border)]"
+    if (score >= 2.0) return "bg-[var(--status-needs-review-bg)] text-[var(--status-needs-review-text)] border-[var(--status-needs-review-border)]"
+    return "bg-[var(--status-flagged-bg)] text-[var(--status-flagged-text)] border-[var(--status-flagged-border)]"
   }
 
   const getStatusLabel = (score: number) => {
@@ -95,7 +95,7 @@ export function HotelCard({ hotel }: HotelCardProps) {
                     className={cn(
                       "size-3",
                       i <= Math.round(hotel.avg_score)
-                        ? "fill-yellow-400 text-yellow-400"
+                        ? "fill-[var(--rating-fill)] text-[var(--rating-fill)]"
                         : "fill-muted text-muted"
                     )}
                   />

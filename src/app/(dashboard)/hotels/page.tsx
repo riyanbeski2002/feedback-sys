@@ -83,19 +83,19 @@ export default function HotelsPage() {
 
       <div className="flex items-center gap-4 text-xs font-medium uppercase tracking-wider text-muted-foreground">
         <div className="flex items-center gap-1.5">
-          <span className="size-2 rounded-full bg-green-500"></span>
+          <span className="size-2 rounded-full bg-[var(--status-top-rated-text)]"></span>
           Top Rated
         </div>
         <div className="flex items-center gap-1.5">
-          <span className="size-2 rounded-full bg-slate-400"></span>
+          <span className="size-2 rounded-full bg-[var(--status-stable-text)]"></span>
           Reliable
         </div>
         <div className="flex items-center gap-1.5">
-          <span className="size-2 rounded-full bg-orange-400"></span>
+          <span className="size-2 rounded-full bg-[var(--status-needs-review-text)]"></span>
           Needs Review
         </div>
         <div className="flex items-center gap-1.5">
-          <span className="size-2 rounded-full bg-red-500"></span>
+          <span className="size-2 rounded-full bg-[var(--status-flagged-text)]"></span>
           Flagged
         </div>
       </div>

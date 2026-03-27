@@ -64,13 +64,13 @@ export function BookingTable({ initialData }: { initialData: any[] }) {
                   {booking.status !== "completed" ? (
                     <CheckoutDialog bookingId={booking.id} hotelName={booking.hotels?.name} />
                   ) : booking.feedback_submitted ? (
-                    <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200">
+                    <Badge variant="outline" className="bg-[var(--status-top-rated-bg)] text-[var(--status-top-rated-text)] border-[var(--status-top-rated-border)]">
                       Feedback Submitted
                     </Badge>
                   ) : (
                     <Link
                       href={`/feedback/${booking.id}`}
-                      className={cn(buttonVariants({ variant: "outline", size: "sm" }), "text-blue-600 border-blue-200 hover:bg-blue-50")}
+                      className={cn(buttonVariants({ variant: "outline", size: "sm" }), "text-[var(--metric-info)] border-[var(--metric-info)] hover:bg-[var(--metric-info-bg)]")}
                     >
                       Rate Now
                     </Link>

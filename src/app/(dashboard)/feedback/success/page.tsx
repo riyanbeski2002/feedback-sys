@@ -28,8 +28,8 @@ export default function SuccessPage() {
   return (
     <div className="flex flex-col items-center justify-center space-y-8 pt-20">
       <div className="flex flex-col items-center space-y-4 text-center">
-        <div className="rounded-full bg-green-100 p-4">
-          <CheckCircle2 className="size-12 text-green-600" />
+        <div className="rounded-full bg-[var(--status-top-rated-bg)] p-4">
+          <CheckCircle2 className="size-12 text-[var(--status-top-rated-text)]" />
         </div>
         <h1 className="text-4xl font-bold tracking-tight">Thank you!</h1>
         <p className="max-w-md text-xl text-muted-foreground">
