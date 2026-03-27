@@ -5,16 +5,16 @@
 See: .planning/PROJECT.md (updated 2026-03-26)
 
 **Core value:** Create a reliable, automated feedback intelligence loop that improves hotel recommendation quality based on verified guest experiences.
-**Current focus:** Milestone v2.0 — Phase 7: Design Mockups
+**Current focus:** Milestone v2.0 — Phase 8: CSS Implementation
 
 ## Current Position
 
-Phase: 7 of 9 (Design Mockups)
-Plan: 5 of 5 complete (07-01, 07-02, 07-03, 07-04, 07-05 done) — awaiting human approval (Task 3 checkpoint:human-verify)
-Status: Phase 7 Awaiting Human Approval
-Last activity: 2026-03-26 — 07-05 complete: Feedback Form (3 states) + Success screen designed; 14-PNG export set complete
+Phase: 8 of 9 (CSS Implementation — NEXT)
+Plan: 0 of N (not yet planned)
+Status: Phase 7 COMPLETE ✓ — Phase 8 ready to plan
+Last activity: 2026-03-27 — Phase 7 approved; all 14-PNG layout issues fixed; session committed and pushed
 
-Progress: [█████████░] ~95% (Phase 7 design complete, awaiting human approval before Phase 8)
+Progress: [██████████] 100% Phase 7 complete
 
 ## Performance Metrics
 
@@ -73,13 +73,21 @@ Progress: [█████████░] ~95% (Phase 7 design complete, awaiti
 
 None.
 
+- [Phase 07-design-mockups FIXES 2026-03-27]: Hotels Happy layout restructured to 3-column grid (3+3+2 rows, 8 cards total), hotel-grid expanded from 400→528px height — was overflowing to single row
+- [Phase 07-design-mockups FIXES 2026-03-27]: Hotels Empty stray 352×160 node deleted (was floating outside frame boundary)
+- [Phase 07-design-mockups FIXES 2026-03-27]: Settings Happy/Save Error scoring weights 4th column (Amenities) reorganized from 4-column horizontal into 2×2 grid — 4th column was escaping 800px frame width
+- [Phase 07-design-mockups FIXES 2026-03-27]: Hotels Happy "[ Screen Content ]" placeholder deleted (node TY7rU); page header, badge legend, hotel grid moved into content-zone with proper y coordinates
+- [Phase 07-design-mockups FIXES 2026-03-27]: Notifications App Shell copy (Ismp5) height extended from 900→1080px; sidebar and content-zone heights updated to match — was causing cell content to render on dark canvas below shell
+- [Phase 07-design-mockups FIXES 2026-03-27]: Settings frames stacked vertically (y=5400/6700/8000) instead of side-by-side to avoid Pencil canvas label overlap on adjacent frames
+- [Phase 07-design-mockups]: Figma MCP token configured in ~/.claude/settings.json pluginConfigs — restart Claude Code for use_figma tools to become available; after restart copy all 14 designs to Figma
+
 ### Blockers/Concerns
 
 - [Phase 6] feedback_config singleton migration RESOLVED in 06-02 — migration SQL created, constraint enforced at DB level
-- [Phase 7] Pencil MCP code generation is known to miss shadcn component substitutions and responsive breakpoints — treat generated code as reference only, manual review gate required before commit
+- [Phase 7] RESOLVED — all layout issues fixed, 14 PNGs clean, human approved 2026-03-27
 
 ## Session Continuity
 
-Last session: 2026-03-26
-Stopped at: Completed 07-05-PLAN.md Tasks 1-2 (Feedback Form 3 states + Success screen + 14-PNG export set); paused at Task 3 checkpoint:human-verify awaiting design approval
+Last session: 2026-03-27
+Stopped at: Phase 7 approved + all fixes committed. Next: restart Claude Code, then push 14 designs to Figma via use_figma, then /gsd:plan-phase 8 to begin CSS implementation.
 Resume file: None
