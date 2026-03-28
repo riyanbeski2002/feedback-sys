@@ -9,10 +9,10 @@ See: .planning/PROJECT.md (updated 2026-03-26)
 
 ## Current Position
 
-Phase: 9 of 9 (Full Functionality — IN PROGRESS)
-Plan: 2 of TBD (09-01 and 09-02 complete)
-Status: Phase 9 IN PROGRESS — plans 09-01 and 09-02 complete (FTR-01, FTR-02 done)
-Last activity: 2026-03-28 — 09-01 complete: notifications page live Supabase fetch with submission selector replacing SAMPLE_DATA
+Phase: 9.1 of 9.1 (Tech Story Verification — IN PROGRESS)
+Plan: 1 of 1 (09.1-01 complete)
+Status: Phase 9.1 IN PROGRESS — plan 09.1-01 complete (VERIFICATION-REPORT.md produced, TECH-STORIES.md corrected with TS-14/15/16)
+Last activity: 2026-03-28 — 09.1-01 complete: gap analysis report produced, 3 critical gaps closed, 3 dependency fixes applied
 
 Progress: [██████████] 100% Phase 8 complete
 
@@ -43,6 +43,7 @@ Progress: [██████████] 100% Phase 8 complete
 | Phase 08-design-implementation P01 | 38s | 2 tasks | 1 files |
 | Phase 08-design-implementation P02 | - | 2 tasks | 2 files |
 | Phase 09-full-functionality P02 | 1 | 2 tasks | 2 files |
+| Phase 09.1-tech-story-verification P01 | 5 | 2 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -78,6 +79,10 @@ Progress: [██████████] 100% Phase 8 complete
 - [Phase 09-full-functionality]: revalidatePath('/hotels') added to update-config so Hotels page SSR cache is invalidated on every settings save
 - [Phase 09-full-functionality 09-01]: Supabase joined query result cast via `as unknown as FeedbackRow[]` — direct cast fails TS2352 because Supabase infers joined relations as arrays while runtime returns single objects
 - [Phase 09-full-functionality 09-01]: feedbackLink and expiryTime remain static on notifications page per CONTEXT.md — no DB column for these prototype values
+- [Phase 09.1-tech-story-verification]: 3 critical gaps identified in TECH-STORIES.md: COL-03 (WhatsApp Quick Score → TS-14), SCI-04 (Automatic Flagging → TS-15), TRG-03 (Notification Preview UI → TS-16)
+- [Phase 09.1-tech-story-verification]: Global MVP architecture divergence: all 13 stories describe async queue-based workers; MVP uses synchronous inline server actions — this is pervasive Minor gap, not Critical
+- [Phase 09.1-tech-story-verification]: sentiment_confidence column corrected to sentiment_score in TS-13 to match actual MVP DB schema
+- [Phase 09.1-tech-story-verification]: Dependency corrections: TS-11 circular dep with TS-9/TS-10 resolved; TS-12 reverse dep on TS-2 resolved; TS-4/TS-5 mutual listing is non-blocking producer-consumer relationship
 
 ### Pending Todos
 
@@ -110,5 +115,5 @@ None.
 ## Session Continuity
 
 Last session: 2026-03-28
-Stopped at: Quick task 1 complete — Tech Story document created.
+Stopped at: Completed 09.1-01-PLAN.md — VERIFICATION-REPORT.md produced, TECH-STORIES.md corrected.
 Resume file: None
