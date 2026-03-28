@@ -52,7 +52,7 @@
 
 ### Features (FTR)
 - [ ] **FTR-01**: Notification previews for all 4 channels show data from the most recent real feedback submission (not static sample data)
-- [ ] **FTR-02**: When admin saves new scoring weights, hotel aggregate scores are recalculated across all existing feedback
+- [x] **FTR-02**: When admin saves new scoring weights, hotel aggregate scores are recalculated across all existing feedback
 
 ## v3 Requirements (Deferred)
 - **AUTH-01**: Full production-grade user authentication.
@@ -105,7 +105,7 @@
 | DAT-03 | Phase 6 | Complete |
 | DAT-04 | Phase 6 | Complete |
 | FTR-01 | Phase 9 | Pending |
-| FTR-02 | Phase 9 | Pending |
+| FTR-02 | Phase 9 | Complete |
 
 **Coverage:**
 - v2 requirements: 16 total

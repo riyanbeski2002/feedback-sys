@@ -9,10 +9,10 @@ See: .planning/PROJECT.md (updated 2026-03-26)
 
 ## Current Position
 
-Phase: 9 of 9 (Full Functionality — NEXT)
-Plan: 0 of TBD (not yet planned)
-Status: Phase 8 COMPLETE ✓ — Phase 9 ready to plan
-Last activity: 2026-03-28 — Phase 8 verified complete; all 4 DSG requirements satisfied (DSG-03/04/05/06)
+Phase: 9 of 9 (Full Functionality — IN PROGRESS)
+Plan: 2 of TBD (09-02 complete)
+Status: Phase 9 IN PROGRESS — plan 09-02 complete (FTR-02 done)
+Last activity: 2026-03-28 — 09-02 complete: hotel score recalculation wired into update-config server action
 
 Progress: [██████████] 100% Phase 8 complete
 
@@ -42,6 +42,7 @@ Progress: [██████████] 100% Phase 8 complete
 | Phase 07-design-mockups P05 | 25 | 2 tasks | 4 files |
 | Phase 08-design-implementation P01 | 38s | 2 tasks | 1 files |
 | Phase 08-design-implementation P02 | - | 2 tasks | 2 files |
+| Phase 09-full-functionality P02 | 1 | 2 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -73,6 +74,8 @@ Progress: [██████████] 100% Phase 8 complete
 - [Phase 08-design-implementation]: Framer Motion inline styles require literal hsl() color strings — CSS custom properties (var(--token)) are not interpolated by Framer Motion's animate engine at runtime
 - [Phase 08-design-implementation]: DSG-03/04/05 confirmed fully complete from Phase 6 implementation — no regressions found
 - [Phase 08-design-implementation]: DSG-06 header density: h-20→h-12, backdrop-blur removed, flat bg-background; sidebar: gap-0.5, h-9 nav items, size-4 icons, font-medium text-sm
+- [Phase 09-full-functionality]: Score recalculation runs only after confirmed successful upsert — no hotel rows touched if config save fails
+- [Phase 09-full-functionality]: revalidatePath('/hotels') added to update-config so Hotels page SSR cache is invalidated on every settings save
 
 ### Pending Todos
 
