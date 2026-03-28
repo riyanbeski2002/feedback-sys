@@ -40,6 +40,7 @@ Progress: [██████████] 100% Phase 7 complete
 | Phase 07-design-mockups P03 | 12 | 2 tasks | 4 files |
 | Phase 07-design-mockups P04 | 14 | 2 tasks | 2 files |
 | Phase 07-design-mockups P05 | 25 | 2 tasks | 4 files |
+| Phase 08-design-implementation P01 | 38s | 2 tasks | 1 files |
 
 ## Accumulated Context
 
@@ -68,6 +69,8 @@ Progress: [██████████] 100% Phase 7 complete
 - [Phase 07-design-mockups]: Feedback Form Mobile 375px uses standalone frame (no App Shell) with 60px mobile-header bar — App Shell sidebar covers 64% of 375px viewport
 - [Phase 07-design-mockups]: Slider thumb 16px desktop / 24px mobile for ≥44px touch target compliance; 8px track on mobile for better visibility
 - [Phase 07-design-mockups]: Success card checkmark: '✓' text in teal ellipse circle (#E8F9F7) — consistent with Pencil desktop app icon placeholder pattern
+- [Phase 08-design-implementation]: Framer Motion inline styles require literal hsl() color strings — CSS custom properties (var(--token)) are not interpolated by Framer Motion's animate engine at runtime
+- [Phase 08-design-implementation]: DSG-03/04/05 confirmed fully complete from Phase 6 implementation — no regressions found
 
 ### Pending Todos
 
