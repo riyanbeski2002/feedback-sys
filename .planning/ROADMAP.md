@@ -109,7 +109,7 @@ Plans:
 - [ ] 07-04-PLAN.md — Design Notifications 2x2 channel grid (Email/Slack/Teams/WhatsApp)
 - [ ] 07-05-PLAN.md — Design Feedback Form (desktop + validation + mobile 375px) and Success screen; human approval gate
 
-### Phase 8: Design Implementation
+### ✅ Phase 8: Design Implementation — COMPLETE (2026-03-28)
 **Goal**: Apply the approved Ziptrrip visual identity across all components — teal color tokens, semantic badge colors, pill elements, and B2B sidebar/header density — replacing all hardcoded colors.
 **Depends on**: Phase 7
 **Requirements**: DSG-03, DSG-04, DSG-05, DSG-06
@@ -121,8 +121,8 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 08-01-PLAN.md — Audit and fix DSG-03/04/05 residuals (teal flash animation in hotel-card.tsx)
-- [ ] 08-02-PLAN.md — DSG-06 sidebar/header B2B density implementation (site-header.tsx + app-sidebar.tsx)
+- [x] 08-01-PLAN.md — Audit and fix DSG-03/04/05 residuals (teal flash animation in hotel-card.tsx)
+- [x] 08-02-PLAN.md — DSG-06 sidebar/header B2B density implementation (site-header.tsx + app-sidebar.tsx)
 
 ### Phase 9: Full Functionality
 **Goal**: Complete the two remaining end-to-end capability gaps — dynamic notification previews that read from real feedback data, and live score recalculation when admin changes scoring weights.
@@ -131,7 +131,11 @@ Plans:
 **Success Criteria** (what must be TRUE):
   1. After a user submits a new feedback form, visiting the Notifications page shows that submission's hotel name, traveller name, score, and comment in all four channel preview formats — not static sample text.
   2. When an admin changes scoring weights in the Settings panel and saves, every hotel's aggregate score immediately recalculates across all existing feedback rows and the Hotels page reflects the updated rankings without a manual page refresh.
-**Plans**: TBD
+**Plans**: 2 plans
+
+Plans:
+- [ ] 09-01-PLAN.md — Dynamic notifications page: replace SAMPLE_DATA with Supabase fetch + submission selector driving all 4 channel previews
+- [ ] 09-02-PLAN.md — Score recalculation: extend update-config.ts to bulk-recalculate hotel avg_scores after settings save
 
 ---
 
@@ -147,10 +151,10 @@ Phases execute in numeric order: 6 → 7 → 8 → 9
 | 3. Scoring & Ranking | v1.0 | - | Complete | 2026-03-25 |
 | 4. Admin & Config | v1.0 | - | Complete | 2026-03-25 |
 | 5. Multi-channel & AI | v1.0 | - | Complete | 2026-03-26 |
-| 6. Foundation Stabilization | 3/3 | Complete   | 2026-03-26 | - |
-| 7. Design Mockups | 4/5 | In Progress|  | - |
-| 8. Design Implementation | 1/2 | In Progress|  | - |
-| 9. Full Functionality | v2.0 | 0/TBD | Not started | - |
+| 6. Foundation Stabilization | v2.0 | 3/3 | Complete | 2026-03-26 |
+| 7. Design Mockups | v2.0 | 4/5 | Complete | 2026-03-27 |
+| 8. Design Implementation | v2.0 | 2/2 | Complete ✅ | 2026-03-28 |
+| 9. Full Functionality | v2.0 | 0/2 | Not started | - |
 
 ---
-*Last updated: 2026-03-26 after Phase 7 plans created*
+*Last updated: 2026-03-28 after Phase 9 plans created*
