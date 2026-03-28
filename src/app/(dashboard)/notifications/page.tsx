@@ -1,27 +1,60 @@
 "use client"
 
-import { useState } from "react"
-import { Bell, Mail, MessageSquare, Slack as SlackIcon, Users } from "lucide-react"
+import { useEffect, useState } from "react"
+import { Bell, Loader2, Mail, MessageSquare, Slack as SlackIcon, Users } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { EmailPreview } from "@/features/notifications/components/email-preview"
 import { WhatsAppPreview } from "@/features/notifications/components/whatsapp-preview"
 import { SlackPreview } from "@/features/notifications/components/slack-preview"
 import { TeamsPreview } from "@/features/notifications/components/teams-preview"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { createClient } from "@/lib/supabase/client"
 
-const SAMPLE_DATA = {
-  travellerName: "Riyan Khan",
-  hotelName: "Grand Royal Bangalore",
-  checkinDate: "20 Mar 2026",
-  checkoutDate: "22 Mar 2026",
-  expiryTime: "25 Mar 2026, 11:59 PM",
-  feedbackLink: "https://ziptrrip.com/f/bk-9283-xk"
+type FeedbackRow = {
+  id: string
+  computed_score: number | null
+  comment: string | null
+  created_at: string
+  bookings: { traveller_name: string; checkin_date: string; checkout_date: string } | null
+  hotels: { name: string } | null
 }
 
 type Channel = "email" | "whatsapp" | "slack" | "teams"
 
 export default function NotificationsPage() {
   const [activeChannel, setActiveChannel] = useState<Channel>("email")
+  const [feedbackList, setFeedbackList] = useState<FeedbackRow[]>([])
+  const [selectedId, setSelectedId] = useState<string>("")
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const supabase = createClient()
+    supabase
+      .from("feedback")
+      .select(`
+        id,
+        computed_score,
+        comment,
+        created_at,
+        bookings (
+          traveller_name,
+          checkin_date,
+          checkout_date
+        ),
+        hotels (
+          name
+        )
+      `)
+      .order("created_at", { ascending: false })
+      .then(({ data }) => {
+        if (data && data.length > 0) {
+          setFeedbackList(data as unknown as FeedbackRow[])
+          setSelectedId(data[0].id)
+        }
+        setLoading(false)
+      })
+  }, [])
 
   const channels = [
     { id: "email", label: "Email", icon: Mail },
@@ -29,6 +62,20 @@ export default function NotificationsPage() {
     { id: "slack", label: "Slack", icon: SlackIcon },
     { id: "teams", label: "Teams", icon: Users },
   ] as const
+
+  const selected = feedbackList.find(f => f.id === selectedId)
+  const travellerName = selected?.bookings?.traveller_name ?? "Unknown"
+  const hotelName = selected?.hotels?.name ?? "Unknown hotel"
+  const score = selected?.computed_score != null ? selected.computed_score.toString() : "—"
+  const comment = selected?.comment ?? ""
+  const checkinDate = selected?.bookings?.checkin_date
+    ? new Date(selected.bookings.checkin_date).toLocaleDateString("en-IN", { day: "2-digit", month: "short", year: "numeric" })
+    : "—"
+  const checkoutDate = selected?.bookings?.checkout_date
+    ? new Date(selected.bookings.checkout_date).toLocaleDateString("en-IN", { day: "2-digit", month: "short", year: "numeric" })
+    : "—"
+  const feedbackLink = "https://ziptrrip.com/f/bk-9283-xk"
+  const expiryTime = "25 Mar 2026, 11:59 PM"
 
   return (
     <div className="space-y-8">
@@ -44,6 +91,31 @@ export default function NotificationsPage() {
 
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
         <div className="lg:col-span-1 space-y-4">
+          {/* Submission Selector */}
+          <div className="space-y-2">
+            <h2 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">Submission</h2>
+            {loading ? (
+              <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                <Loader2 className="size-4 animate-spin" />
+                Loading...
+              </div>
+            ) : (
+              <Select value={selectedId} onValueChange={setSelectedId}>
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="Select a submission" />
+                </SelectTrigger>
+                <SelectContent>
+                  {feedbackList.map((f) => (
+                    <SelectItem key={f.id} value={f.id}>
+                      {f.bookings?.traveller_name ?? "Unknown"} — {f.hotels?.name ?? "Unknown"}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            )}
+          </div>
+
+          {/* Channel Selector */}
           <h2 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">Channels</h2>
           <div className="flex flex-col gap-2">
             {channels.map((channel) => (
@@ -58,7 +130,7 @@ export default function NotificationsPage() {
               </Button>
             ))}
           </div>
-          
+
           <Card className="mt-8 bg-muted/50 border-none">
             <CardHeader className="p-4">
               <CardTitle className="text-xs">Context Variables</CardTitle>
@@ -66,15 +138,23 @@ export default function NotificationsPage() {
             <CardContent className="p-4 pt-0 space-y-3">
               <div className="space-y-1">
                 <p className="text-[10px] text-muted-foreground uppercase">Traveller</p>
-                <p className="text-xs font-medium">{SAMPLE_DATA.travellerName}</p>
+                <p className="text-xs font-medium">{travellerName}</p>
               </div>
               <div className="space-y-1">
                 <p className="text-[10px] text-muted-foreground uppercase">Hotel</p>
-                <p className="text-xs font-medium">{SAMPLE_DATA.hotelName}</p>
+                <p className="text-xs font-medium">{hotelName}</p>
+              </div>
+              <div className="space-y-1">
+                <p className="text-[10px] text-muted-foreground uppercase">Score</p>
+                <p className="text-xs font-medium">{score}</p>
+              </div>
+              <div className="space-y-1">
+                <p className="text-[10px] text-muted-foreground uppercase">Comment</p>
+                <p className="text-xs font-medium">{comment.slice(0, 80)}{comment.length > 80 ? "…" : ""}</p>
               </div>
               <div className="space-y-1">
                 <p className="text-[10px] text-muted-foreground uppercase">Link</p>
-                <p className="text-[10px] font-mono bg-background p-1 rounded break-all">{SAMPLE_DATA.feedbackLink}</p>
+                <p className="text-[10px] font-mono bg-background p-1 rounded break-all">{feedbackLink}</p>
               </div>
             </CardContent>
           </Card>
@@ -82,34 +162,34 @@ export default function NotificationsPage() {
 
         <div className="lg:col-span-3 min-h-[500px] flex items-center justify-center bg-muted/20 rounded-xl p-4 md:p-8 border-2 border-dashed">
           {activeChannel === "email" && (
-            <EmailPreview 
-              travellerName={SAMPLE_DATA.travellerName}
-              hotelName={SAMPLE_DATA.hotelName}
-              checkinDate={SAMPLE_DATA.checkinDate}
-              checkoutDate={SAMPLE_DATA.checkoutDate}
-              expiryTime={SAMPLE_DATA.expiryTime}
+            <EmailPreview
+              travellerName={travellerName}
+              hotelName={hotelName}
+              checkinDate={checkinDate}
+              checkoutDate={checkoutDate}
+              expiryTime={expiryTime}
             />
           )}
           {activeChannel === "whatsapp" && (
-            <WhatsAppPreview 
-              travellerName={SAMPLE_DATA.travellerName}
-              hotelName={SAMPLE_DATA.hotelName}
-              feedbackLink={SAMPLE_DATA.feedbackLink}
+            <WhatsAppPreview
+              travellerName={travellerName}
+              hotelName={hotelName}
+              feedbackLink={feedbackLink}
             />
           )}
           {activeChannel === "slack" && (
-            <SlackPreview 
-              hotelName={SAMPLE_DATA.hotelName}
-              checkinDate={SAMPLE_DATA.checkinDate}
-              checkoutDate={SAMPLE_DATA.checkoutDate}
-              feedbackLink={SAMPLE_DATA.feedbackLink}
+            <SlackPreview
+              hotelName={hotelName}
+              checkinDate={checkinDate}
+              checkoutDate={checkoutDate}
+              feedbackLink={feedbackLink}
             />
           )}
           {activeChannel === "teams" && (
-            <TeamsPreview 
-              hotelName={SAMPLE_DATA.hotelName}
-              checkinDate={SAMPLE_DATA.checkinDate}
-              checkoutDate={SAMPLE_DATA.checkoutDate}
+            <TeamsPreview
+              hotelName={hotelName}
+              checkinDate={checkinDate}
+              checkoutDate={checkoutDate}
             />
           )}
         </div>
