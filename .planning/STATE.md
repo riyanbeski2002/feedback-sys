@@ -10,9 +10,9 @@ See: .planning/PROJECT.md (updated 2026-03-26)
 ## Current Position
 
 Phase: 9 of 9 (Full Functionality — IN PROGRESS)
-Plan: 2 of TBD (09-02 complete)
-Status: Phase 9 IN PROGRESS — plan 09-02 complete (FTR-02 done)
-Last activity: 2026-03-28 — 09-02 complete: hotel score recalculation wired into update-config server action
+Plan: 2 of TBD (09-01 and 09-02 complete)
+Status: Phase 9 IN PROGRESS — plans 09-01 and 09-02 complete (FTR-01, FTR-02 done)
+Last activity: 2026-03-28 — 09-01 complete: notifications page live Supabase fetch with submission selector replacing SAMPLE_DATA
 
 Progress: [██████████] 100% Phase 8 complete
 
@@ -76,6 +76,8 @@ Progress: [██████████] 100% Phase 8 complete
 - [Phase 08-design-implementation]: DSG-06 header density: h-20→h-12, backdrop-blur removed, flat bg-background; sidebar: gap-0.5, h-9 nav items, size-4 icons, font-medium text-sm
 - [Phase 09-full-functionality]: Score recalculation runs only after confirmed successful upsert — no hotel rows touched if config save fails
 - [Phase 09-full-functionality]: revalidatePath('/hotels') added to update-config so Hotels page SSR cache is invalidated on every settings save
+- [Phase 09-full-functionality 09-01]: Supabase joined query result cast via `as unknown as FeedbackRow[]` — direct cast fails TS2352 because Supabase infers joined relations as arrays while runtime returns single objects
+- [Phase 09-full-functionality 09-01]: feedbackLink and expiryTime remain static on notifications page per CONTEXT.md — no DB column for these prototype values
 
 ### Pending Todos
 
@@ -98,5 +100,5 @@ None.
 ## Session Continuity
 
 Last session: 2026-03-28
-Stopped at: Phase 8 verified complete (08-VERIFICATION.md written, ROADMAP + STATE updated). Next: /gsd:plan-phase 9 to plan dynamic notification previews and live score recalculation.
+Stopped at: Phase 9 plan 09-01 complete (notifications page live data with submission selector). FTR-01 satisfied.
 Resume file: None
