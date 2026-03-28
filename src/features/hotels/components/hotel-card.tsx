@@ -58,8 +58,8 @@ export function HotelCard({ hotel }: HotelCardProps) {
       animate={{ 
         opacity: 1, 
         y: 0,
-        boxShadow: isFlashing ? "0 0 20px rgba(59, 130, 246, 0.5)" : "none",
-        borderColor: isFlashing ? "rgba(59, 130, 246, 0.5)" : "inherit"
+        boxShadow: isFlashing ? "0 0 20px hsl(171 53% 64% / 0.5)" : "none",
+        borderColor: isFlashing ? "hsl(171 53% 64% / 0.5)" : "inherit"
       }}
       transition={{ duration: 0.5 }}
       className={cn(
