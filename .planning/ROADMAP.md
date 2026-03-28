@@ -155,6 +155,16 @@ Phases execute in numeric order: 6 → 7 → 8 → 9
 | 7. Design Mockups | v2.0 | 4/5 | Complete | 2026-03-27 |
 | 8. Design Implementation | v2.0 | 2/2 | Complete ✅ | 2026-03-28 |
 | 9. Full Functionality | 2/2 | Complete    | 2026-03-28 | - |
+| 09.1. Tech Story Verification | meta | 0/1 | In Progress | - |
 
 ---
-*Last updated: 2026-03-28 after Phase 9 plans created*
+*Last updated: 2026-03-28 after Phase 09.1 plans created*
+
+### Phase 09.1: check all Tech story documents and verify logic with the initial PRD and the current MVP (INSERTED)
+
+**Goal:** Cross-check all 13 Tech Stories against PRD and MVP, produce VERIFICATION-REPORT.md, and auto-apply safe corrections to TECH-STORIES.md.
+**Depends on:** Phase 9
+**Plans:** 1 plan
+
+Plans:
+- [ ] 09.1-01-PLAN.md — Write VERIFICATION-REPORT.md and apply auto-corrections to TECH-STORIES.md (cosmetic fixes + 3 new gap-closure stories TS-14/15/16)
