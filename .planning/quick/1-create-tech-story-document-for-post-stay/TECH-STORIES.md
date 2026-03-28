@@ -15,9 +15,11 @@ Detect when a hotel booking checkout date has passed and mark that booking as el
 
 ### 2. Scope
 **Included:**
-- A scheduled job that runs daily and queries for bookings whose checkout date is in the past
+- A scheduled backfill job that periodically queries for bookings whose checkout date has passed but were not detected in real time
 - Marking eligible bookings with a status flag (`feedback_eligible`)
 - Preventing duplicate eligibility marking for the same booking
+
+**Note:** Real-time checkout detection via admin action or PMS webhook is the **primary path** (see FR-6). This story covers the scheduled fallback only — it catches bookings missed by real-time events.
 
 **Excluded:**
 - Sending notifications (handled in TS-3)
@@ -25,11 +27,12 @@ Detect when a hotel booking checkout date has passed and mark that booking as el
 - Processing cancellations or no-show bookings
 
 ### 3. Functional Requirements
-1. A scheduled job executes once every 24 hours (e.g., 01:00 UTC)
+1. A scheduled backfill job executes every **1–4 hours** (configurable; default 2 hours) to catch any bookings whose `checkout_date < NOW()` and `feedback_eligible = false`
 2. The job queries all confirmed bookings where `checkout_date < NOW()` and `feedback_eligible = false`
-3. For each matched booking, the job sets `feedback_eligible = true` and records `eligible_at` timestamp
+3. For each matched booking, the job sets `feedback_eligible = true` and records `eligible_at = checkout_date` (the actual checkout time, not the detection time)
 4. The job is idempotent: re-running it on already-processed bookings produces no side effects
 5. Job execution is logged with booking count processed and any errors encountered
+6. **Primary path (real-time):** When a booking is explicitly marked as checked-out via an admin action or PMS webhook, the system immediately sets `feedback_eligible = true` and `eligible_at = checkout_date` without waiting for the scheduled job
 
 ### 4. Non-Functional Requirements
 - Job must complete within 60 seconds for up to 10,000 eligible bookings
@@ -43,7 +46,7 @@ Detect when a hotel booking checkout date has passed and mark that booking as el
 - System clock (UTC)
 
 **Outputs:**
-- Updated bookings rows: `feedback_eligible = true`, `eligible_at = NOW()`
+- Updated bookings rows: `feedback_eligible = true`, `eligible_at = checkout_date` (not detection time)
 - Job execution log entry: timestamp, rows processed, errors
 
 ### 6. Dependencies
@@ -87,9 +90,9 @@ Enqueue a feedback request task for each newly eligible booking at the configure
 - Configuration management UI (TS-12)
 
 ### 3. Functional Requirements
-1. After TS-1 marks bookings eligible, a trigger processor reads all bookings where `feedback_eligible = true` and `trigger_sent = false`
-2. For each booking, compute the trigger fire time: `eligible_at + trigger_delay_hours`
-3. If the fire time is in the past or present, enqueue a `SEND_FEEDBACK_REQUEST` task immediately
+1. After a booking is marked eligible (via real-time event or backfill job), a trigger processor reads all bookings where `feedback_eligible = true` and `trigger_sent = false`
+2. For each booking, compute the trigger fire time: `checkout_date + trigger_delay_hours`
+3. If the fire time is in the past or present (e.g., late detection by backfill job), enqueue a `SEND_FEEDBACK_REQUEST` task immediately
 4. If the fire time is in the future, schedule the task for that time
 5. After enqueuing, mark the booking `trigger_sent = true` and record `triggered_at`
 6. For reminders: enqueue additional `SEND_FEEDBACK_REMINDER` tasks at configured intervals if `reminder_count > 0`
@@ -116,7 +119,7 @@ Enqueue a feedback request task for each newly eligible booking at the configure
 
 ### 7. Acceptance Criteria
 - [ ] Each eligible booking generates exactly one `SEND_FEEDBACK_REQUEST` task
-- [ ] Tasks are scheduled at `eligible_at + trigger_delay_hours`, not before
+- [ ] Tasks are scheduled at `checkout_date + trigger_delay_hours`, not based on detection time
 - [ ] `trigger_sent = true` is set only after successful enqueue
 - [ ] Re-running the processor on already-triggered bookings produces no duplicate tasks
 - [ ] Reminder tasks are enqueued per `reminder_count` and `reminder_interval_hours` values
@@ -127,6 +130,7 @@ Enqueue a feedback request task for each newly eligible booking at the configure
 - Task queue unavailable: log error, leave `trigger_sent = false`, retry on next processor run
 - Booking feedback already submitted before trigger fires: `SEND_FEEDBACK_REQUEST` task handler checks submission status and no-ops if already submitted
 - `trigger_delay_hours = 0`: fire immediately upon eligibility
+- **Late detection by backfill job:** If a booking checked out 20 hours ago and the delay is 24 hours, the fire time (`checkout_date + 24h`) is still 4 hours in the future — schedule normally. If the checkout was 30 hours ago and delay is 24h, fire time is already past — enqueue immediately. The notification is never delayed by an additional full cycle due to late detection.
 
 ### 9. Estimated Effort
 3 days (breakdown: 4 hours design + 12 hours implementation + 8 hours testing)
