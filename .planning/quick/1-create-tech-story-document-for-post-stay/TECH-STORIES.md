@@ -4,7 +4,7 @@
 **Version:** 1.0 MVP
 **Author:** Senior BA / Program Manager
 **Date:** 2026-03-28
-**Total Stories:** 13
+**Total Stories:** 16
 
 ---
 
@@ -710,8 +710,6 @@ Allow administrators to flag hotels of concern or blacklist those that consisten
 
 ### 6. Dependencies
 - TS-6: Data Storage (defines `flagged_hotels` table)
-- TS-9: Hotel Listing Integration (reads flag status for badge display)
-- TS-10: Admin Dashboard (surfaces flag status; flag action may be triggered from dashboard UI)
 - Auth system (admin role check)
 
 ### 7. Acceptance Criteria
@@ -780,7 +778,6 @@ Provide a persistent, admin-editable configuration store for the feedback system
 
 ### 6. Dependencies
 - TS-6: Data Storage (defines `feedback_config` table with singleton pattern)
-- TS-2: Feedback Trigger System (reads `active`, `trigger_delay_hours`, `reminder_count`, `reminder_interval_hours`)
 - TS-7: Scoring Engine (reads dimension weights; receives `RECOMPUTE_ALL_SCORES` task)
 
 ### 7. Acceptance Criteria
@@ -825,7 +822,7 @@ Enrich feedback submissions with automated sentiment classification by processin
 1. On successful feedback submission (TS-5), if `comment` is non-null and non-empty, enqueue an `ANALYZE_SENTIMENT` task with the submission ID
 2. The sentiment processor retrieves the comment from `feedback_submissions` by submission ID
 3. The processor classifies the comment as `positive`, `neutral`, or `negative` using a rule-based or statistical text classifier
-4. The processor stores `sentiment_label` and `sentiment_confidence` on the `feedback_submissions` row
+4. The processor stores `sentiment_label` and `sentiment_score` on the `feedback_submissions` row
 5. Processing failures are logged and the fields are left as NULL; they do not affect the submission record
 6. The Admin Dashboard displays a sentiment distribution chart: count and percentage of positive/neutral/negative across all analyzed submissions
 
@@ -841,16 +838,16 @@ Enrich feedback submissions with automated sentiment classification by processin
 - `feedback_submissions.comment` text
 
 **Outputs:**
-- Updated `feedback_submissions` row: `sentiment_label` (ENUM: positive/neutral/negative), `sentiment_confidence` (DECIMAL 0.00–1.00)
+- Updated `feedback_submissions` row: `sentiment_label` (ENUM: positive/neutral/negative), `sentiment_score` (DECIMAL 0.00–1.00)
 
 ### 6. Dependencies
 - TS-5: Feedback Submission API (enqueues `ANALYZE_SENTIMENT` tasks, provides comment text)
-- TS-6: Data Storage (add `sentiment_label` and `sentiment_confidence` columns to `feedback_submissions` migration)
+- TS-6: Data Storage (add `sentiment_label` and `sentiment_score` columns to `feedback_submissions` migration)
 - TS-10: Admin Dashboard (extended to show sentiment distribution — dependent on this story being implemented)
 
 ### 7. Acceptance Criteria
-- [ ] Submissions with a non-empty comment produce a `sentiment_label` and `sentiment_confidence` value after processing
-- [ ] Submissions with no comment have `sentiment_label = NULL` and `sentiment_confidence = NULL`
+- [ ] Submissions with a non-empty comment produce a `sentiment_label` and `sentiment_score` value after processing
+- [ ] Submissions with no comment have `sentiment_label = NULL` and `sentiment_score = NULL`
 - [ ] Sentiment processing failure leaves submission record unmodified (no partial write)
 - [ ] Admin Dashboard shows sentiment distribution counts when this story is active
 - [ ] Disabling/not deploying this story has no impact on any other story's functionality
@@ -866,20 +863,191 @@ Enrich feedback submissions with automated sentiment classification by processin
 
 ---
 
+## Tech Story 14: WhatsApp Quick Score Submission [ADDED — GAP CLOSURE]
+
+### 1. Objective
+Provide a simplified score-only feedback path delivered via WhatsApp, allowing guests to submit a single satisfaction rating (1–10) without opening the full detailed feedback form. This satisfies PRD requirement COL-03.
+
+### 2. Scope
+**Included:**
+- A WhatsApp-style UI mockup showing a single 1–10 score input (numeric or slider)
+- Submission path that records the quick score against the booking in the feedback table
+- Display of the submitted quick score alongside full feedback submissions in admin views
+
+**Excluded:**
+- Actual WhatsApp Business API integration (see TS-3 and NOT-01 deferred)
+- Comment or dimension breakdown (handled by TS-4 full form)
+
+### 3. Functional Requirements
+1. Guest can input a satisfaction score from 1 to 10 via a single-input UI
+2. Score is stored against the booking with a `submission_type = 'quick_score'` flag
+3. Duplicate prevention applies: a booking with `feedback_submitted = true` cannot receive a second quick score
+4. Quick score contributes to hotel aggregate score calculations (TS-7)
+5. The notifications page can display a quick score submission in channel preview mockups
+
+### 4. Non-Functional Requirements
+- Response time for score submission < 2 seconds
+- Score input UI is mobile-first (WhatsApp primary context)
+
+### 5. Inputs & Outputs
+**Inputs:**
+- Booking ID, guest score (integer 1–10)
+
+**Outputs:**
+- Feedback row with `submission_type = 'quick_score'`, score stored, `feedback_submitted = true` on booking
+
+### 6. Dependencies
+- TS-4: Feedback Form UI (shares eligibility and duplicate-prevention logic)
+- TS-5: Feedback Submission API (score persisted via same submission path)
+- TS-6: Data Storage (feedback table)
+
+### 7. Acceptance Criteria
+- [ ] Guest can submit a score from 1–10 via the quick score UI
+- [ ] Submission marks the booking as `feedback_submitted = true`
+- [ ] A second submission attempt for the same booking is rejected
+- [ ] Quick score is visible in admin feedback feed
+
+### 8. Edge Cases
+- Score outside 1–10 range: reject with validation error
+- Booking already has full feedback submitted: reject with 409
+
+### 9. Estimated Effort
+1 day (2 hours UI + 4 hours backend + 2 hours testing)
+
+---
+
+## Tech Story 15: Automatic Hotel Flagging on Score Threshold [ADDED — GAP CLOSURE]
+
+### 1. Objective
+Automatically update a hotel's status to "flagged" when its average score drops below a configurable critical threshold after any new feedback submission. This satisfies PRD requirement SCI-04.
+
+### 2. Scope
+**Included:**
+- Threshold evaluation after every feedback submission and after every score recalculation
+- Setting `status_bucket = 'flagged'` (or equivalent status field) when `avg_score < threshold`
+- Clearing the flagged status when score recovers above the threshold
+- Configurable threshold stored in `feedback_config` (default: 2.0 on a 1–5 scale)
+
+**Excluded:**
+- Admin-initiated manual flag/unflag (covered by TS-11)
+- Blacklist enforcement (covered by TS-11)
+- Sending alert notifications when a hotel is flagged (see TS-3)
+
+### 3. Functional Requirements
+1. After every feedback submission, the system evaluates `avg_score` against the configured `flagging_threshold`
+2. If `avg_score < flagging_threshold`, set `status_bucket = 'flagged'`
+3. If `avg_score >= flagging_threshold`, set `status_bucket` to the appropriate tier (top_rated / stable / needs_review)
+4. After admin changes weights and triggers score recalculation, all hotels are re-evaluated against the threshold
+5. The threshold is configurable via the admin Config panel (TS-12)
+
+### 4. Non-Functional Requirements
+- Threshold evaluation completes within the same request as the score update (synchronous)
+- No hotel remains in an incorrect status bucket after a submission
+
+### 5. Inputs & Outputs
+**Inputs:**
+- Updated `avg_score` for a hotel, `flagging_threshold` from `feedback_config`
+
+**Outputs:**
+- Updated `status_bucket` on the hotel row
+
+### 6. Dependencies
+- TS-6: Data Storage (hotels and feedback_config tables)
+- TS-7: Scoring Engine (provides updated avg_score)
+- TS-12: Configuration System (provides flagging_threshold)
+
+### 7. Acceptance Criteria
+- [ ] Hotel with avg_score 1.8 (below 2.0 threshold) shows status_bucket = 'flagged'
+- [ ] Hotel with avg_score 2.1 (above 2.0 threshold) does not show 'flagged'
+- [ ] After score recalculation, status_bucket is updated for all affected hotels
+- [ ] Changing the threshold in Config and saving re-evaluates all hotels
+
+### 8. Edge Cases
+- Hotel with no feedback yet: status_bucket remains 'stable' (default)
+- Threshold set to 0: no hotels can be flagged (valid config)
+- Hotel score exactly equal to threshold: not flagged (strict less-than rule)
+
+### 9. Estimated Effort
+1 day (2 hours logic + 4 hours integration + 2 hours testing)
+
+---
+
+## Tech Story 16: Multi-Channel Notification Preview UI [ADDED — GAP CLOSURE]
+
+### 1. Objective
+Provide an admin-facing notification preview page that renders how a feedback alert would appear in each supported channel (Email, WhatsApp, Slack, Teams) using real submitted feedback data. This satisfies PRD requirement TRG-03 as the prototype implementation of notification visibility.
+
+### 2. Scope
+**Included:**
+- A notifications page with four channel preview panels (Email, WhatsApp, Slack, Teams)
+- Each panel populated from the most recent real feedback submission (hotel name, traveller name, score, comment excerpt)
+- A submission selector allowing the admin to preview notifications for any past submission
+- Pixel-accurate channel mockup rendering matching each platform's visual style
+
+**Excluded:**
+- Actual message dispatch to external APIs (see TS-3 and NOT-01 deferred)
+- Delivery status tracking or retry logic
+
+### 3. Functional Requirements
+1. Notifications page loads the most recent feedback submission by default
+2. Admin can select any past submission from a dropdown to preview its notification content
+3. All four channel panels update simultaneously when a submission is selected
+4. Email panel renders subject line, header, body text, CTA button, and footer
+5. WhatsApp panel renders a message bubble with score and comment excerpt
+6. Slack panel renders a message card with attachment fields
+7. Teams panel renders an Adaptive Card with hotel details and score
+8. Channel previews use real data (hotel name, traveller name, score, comment) — not hardcoded placeholder text
+
+### 4. Non-Functional Requirements
+- Page load time < 2 seconds with up to 100 submissions in the selector
+- Preview renders correctly on both desktop and mobile viewport widths
+
+### 5. Inputs & Outputs
+**Inputs:**
+- Feedback submission record (hotel_name, traveller_name, avg_score, comment, submission_date)
+- Selected submission ID from dropdown
+
+**Outputs:**
+- Rendered channel preview panels displaying real submission data
+
+### 6. Dependencies
+- TS-2: Feedback Trigger System (defines what a "notification" event represents)
+- TS-3: Notification System (defines the content schema each channel expects)
+- TS-5: Feedback Submission API (provides the submission data)
+
+### 7. Acceptance Criteria
+- [ ] Notifications page loads and shows the most recent submission's data in all 4 panels
+- [ ] Changing the submission selector updates all 4 panels with the selected submission's data
+- [ ] Each panel's hotel name, traveller name, score, and comment excerpt match the selected submission
+- [ ] No hardcoded sample data appears when real submissions exist
+
+### 8. Edge Cases
+- No submissions exist yet: show placeholder content indicating no data available
+- Comment field is empty: panel renders without comment excerpt, no layout break
+- Very long hotel name or comment: truncate with ellipsis at channel-appropriate lengths
+
+### 9. Estimated Effort
+2 days (4 hours data layer + 6 hours UI components + 2 hours testing + 4 hours channel-specific styling)
+
+---
+
 ## Story Summary
 
-| # | Title | Effort | Dependencies |
-|---|-------|--------|-------------|
-| 1 | Booking Completion Detection | 2 days | — |
-| 2 | Feedback Trigger System | 3 days | TS-1, TS-12 |
-| 3 | Notification System | 4 days | TS-2, TS-4 |
-| 4 | Feedback Form UI | 3 days | TS-5, TS-2 |
-| 5 | Feedback Submission API | 3 days | TS-4, TS-6, TS-7 |
-| 6 | Data Storage (Database Schema) | 2 days | — |
-| 7 | Scoring Engine | 3 days | TS-5, TS-6, TS-12 |
-| 8 | Ranking Update Logic | 2 days | TS-7, TS-6 |
-| 9 | Hotel Listing Integration | 3 days | TS-8, TS-11, TS-6 |
-| 10 | Admin Dashboard | 4 days | TS-6, TS-8, TS-11 |
-| 11 | Flagging and Blacklisting Logic | 2 days | TS-6, TS-9, TS-10 |
-| 12 | Configuration System | 3 days | TS-6, TS-2, TS-7 |
-| 13 | Sentiment Analysis Layer (Optional) | 4 days | TS-5, TS-6, TS-10 |
+| # | Title | Effort | Dependencies | PRD Coverage |
+|---|-------|--------|-------------|-------------|
+| 1 | Booking Completion Detection | 2 days | — | TRG-01, TRG-02 |
+| 2 | Feedback Trigger System | 3 days | TS-1, TS-12 | TRG-04 |
+| 3 | Notification System | 4 days | TS-2, TS-4 | TRG-03 (delivery layer) |
+| 4 | Feedback Form UI | 3 days | TS-5, TS-2 | COL-01, COL-02 |
+| 5 | Feedback Submission API | 3 days | TS-4, TS-6, TS-7 | COL-01–04 |
+| 6 | Data Storage (Database Schema) | 2 days | — | Foundation |
+| 7 | Scoring Engine | 3 days | TS-5, TS-6, TS-12 | SCI-01, SCI-03 |
+| 8 | Ranking Update Logic | 2 days | TS-7, TS-6 | DSB-01 |
+| 9 | Hotel Listing Integration | 3 days | TS-8, TS-11, TS-6 | DSB-01 |
+| 10 | Admin Dashboard | 4 days | TS-6, TS-8, TS-11 | DSB-02 |
+| 11 | Flagging and Blacklisting Logic | 2 days | TS-6 | SCI-04 (manual) |
+| 12 | Configuration System | 3 days | TS-6, TS-7 | DSB-03, FTR-02 |
+| 13 | Sentiment Analysis Layer (Optional) | 4 days | TS-5, TS-6, TS-10 | SCI-02 |
+| 14 | WhatsApp Quick Score Submission | 1 day | TS-4, TS-5, TS-6 | COL-03 |
+| 15 | Automatic Hotel Flagging on Score Threshold | 1 day | TS-6, TS-7, TS-12 | SCI-04 (automatic) |
+| 16 | Multi-Channel Notification Preview UI | 2 days | TS-2, TS-3, TS-5 | TRG-03 (preview UI), FTR-01 |
