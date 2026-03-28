@@ -69,7 +69,7 @@ export function ConfigForm({ initialConfig }: ConfigFormProps) {
 
     if (result.success) {
       toast.success("Settings Saved", {
-        description: "Global feedback configuration updated successfully.",
+        description: "Configuration and hotel scores updated successfully.",
       })
     } else {
       toast.error("Error", {
