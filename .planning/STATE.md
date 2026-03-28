@@ -91,6 +91,10 @@ None.
 - [Phase 07-design-mockups FIXES 2026-03-27]: Settings frames stacked vertically (y=5400/6700/8000) instead of side-by-side to avoid Pencil canvas label overlap on adjacent frames
 - [Phase 07-design-mockups]: Figma MCP token configured in ~/.claude/settings.json pluginConfigs — restart Claude Code for use_figma tools to become available; after restart copy all 14 designs to Figma
 
+### Roadmap Evolution
+
+- Phase 09.1 inserted after Phase 9: check all Tech story documents and verify logic with the initial PRD and the current MVP (URGENT)
+
 ### Blockers/Concerns
 
 - [Phase 6] feedback_config singleton migration RESOLVED in 06-02 — migration SQL created, constraint enforced at DB level
