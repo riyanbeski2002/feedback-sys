@@ -31,7 +31,7 @@ export async function submitFeedback(data: any) {
         service_quality: data.service_quality,
         room_cleanliness: data.room_cleanliness,
         amenities_provided: data.amenities_provided,
-        repeat_stay_likelihood: data.repeat_stay_likelihood,
+        repeat_stay_likelihood: data.recommend_to_colleagues,
         recommend_to_colleagues: data.recommend_to_colleagues,
         comment: data.comment,
         computed_score,

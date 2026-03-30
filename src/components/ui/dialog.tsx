@@ -9,14 +9,41 @@ function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
+const DialogContext = React.createContext<{ open: boolean; onOpenChange: (open: boolean) => void }>({
+  open: false,
+  onOpenChange: () => {},
+})
+
 const Dialog = ({ open, onOpenChange, children }: { open?: boolean, onOpenChange?: (open: boolean) => void, children: React.ReactNode }) => {
-  if (!open) return null;
+  return (
+    <DialogContext.Provider value={{ open: open ?? false, onOpenChange: onOpenChange ?? (() => {}) }}>
+      {children}
+    </DialogContext.Provider>
+  )
+}
+
+const DialogTrigger = ({ children, asChild }: { children: React.ReactNode, asChild?: boolean }) => {
+  const { onOpenChange } = React.useContext(DialogContext)
+  if (asChild && React.isValidElement(children)) {
+    return React.cloneElement(children as React.ReactElement<any>, {
+      onClick: (e: React.MouseEvent) => {
+        (children as React.ReactElement<any>).props.onClick?.(e)
+        onOpenChange(true)
+      }
+    })
+  }
+  return <button onClick={() => onOpenChange(true)}>{children}</button>
+}
+
+const DialogContent = ({ children, className }: { children: React.ReactNode, className?: string }) => {
+  const { open, onOpenChange } = React.useContext(DialogContext)
+  if (!open) return null
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
       <div className="relative w-full max-w-lg overflow-hidden bg-background border rounded-lg shadow-lg animate-in fade-in zoom-in duration-200">
-        {children}
+        <div className={cn("p-6", className)}>{children}</div>
         <button
-          onClick={() => onOpenChange?.(false)}
+          onClick={() => onOpenChange(false)}
           className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none"
         >
           <X className="h-4 w-4" />
@@ -25,14 +52,6 @@ const Dialog = ({ open, onOpenChange, children }: { open?: boolean, onOpenChange
       </div>
     </div>
   )
-}
-
-const DialogTrigger = ({ children, asChild }: { children: React.ReactNode, asChild?: boolean }) => {
-  return <>{children}</>
-}
-
-const DialogContent = ({ children, className }: { children: React.ReactNode, className?: string }) => {
-  return <div className={cn("p-6", className)}>{children}</div>
 }
 
 const DialogHeader = ({ children, className }: { children: React.ReactNode, className?: string }) => {

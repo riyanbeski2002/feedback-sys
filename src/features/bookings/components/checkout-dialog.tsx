@@ -15,7 +15,7 @@ import { simulateCheckout } from "../actions/simulate-checkout"
 import { useTransition } from "react"
 import { toast } from "sonner"
 
-export function CheckoutDialog({ bookingId, hotelName }: { bookingId: string, hotelName: string }) {
+export function CheckoutDialog({ bookingId, hotelName }: { bookingId: string, hotelName?: string }) {
   const [open, setOpen] = React.useState(false)
   const [isPending, startTransition] = useTransition()
 

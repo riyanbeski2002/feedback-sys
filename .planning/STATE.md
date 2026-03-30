@@ -114,6 +114,32 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-03-28
-Stopped at: Completed 09.1-01-PLAN.md — VERIFICATION-REPORT.md produced, TECH-STORIES.md corrected.
+Last session: 2026-03-29
+Stopped at: Mid-task — UI light mode forced + Pencil vs live UI verification started but not completed.
 Resume file: None
+
+### In-Progress Work (2026-03-29)
+
+**Task: Force light mode + verify all Pencil designs match live UI**
+
+**Completed steps:**
+1. `src/app/layout.tsx` — changed `defaultTheme="system"` → `"light"`, `enableSystem` → `{false}` to force light mode permanently
+2. Cleared `localStorage['theme']` via browser JS so next-themes no longer overrides to dark
+3. Confirmed Hotels and Bookings pages now render in light mode
+
+**Screenshots taken (live UI):**
+- Bookings happy: ss_5878nb389
+- Hotels happy: ss_3001p4q2z (after light mode fix)
+- Notifications: ss_6683selhz
+
+**Pencil frames captured:**
+- Bookings Happy (lC1cg) ✓
+- Hotels Happy (3zHc0) ✓
+- Admin/Dashboard (eeopV) ✓
+- Notifications (iUQSp) ✓
+
+**Still TODO:**
+- Screenshot: Settings, Admin/Dashboard, Feedback Form, Success, empty states
+- Pencil frames still needed: hFbn8 (Settings), Jew2P (Settings no-config), AbHaP (Settings error), JtaCw (Feedback desktop), iyZTR (Feedback validation), yUtnb (Feedback mobile), 42nH8 (Success), hzMqD (Bookings empty), hD10W (Hotels empty)
+- Full diff analysis for each page
+- Edit Pencil designs wherever live UI differs

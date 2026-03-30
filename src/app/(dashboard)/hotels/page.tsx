@@ -15,9 +15,19 @@ interface HotelData {
   last_feedback_at?: string
 }
 
+const FILTERS = [
+  { label: "Top Rated", bucket: "top_rated" },
+  { label: "Reliable", bucket: "stable" },
+  { label: "Needs Review", bucket: "needs_review" },
+  { label: "Flagged", bucket: "flagged" },
+] as const
+
+type FilterBucket = typeof FILTERS[number]["bucket"] | "all"
+
 export default function HotelsPage() {
   const [hotels, setHotels] = useState<HotelData[]>([])
   const [loading, setLoading] = useState(true)
+  const [activeFilter, setActiveFilter] = useState<FilterBucket>("all")
   const supabase = createClient()
 
   useEffect(() => {
@@ -82,25 +92,33 @@ export default function HotelsPage() {
       </div>
 
       <div className="flex items-center gap-4 text-xs font-medium uppercase tracking-wider text-muted-foreground">
-        <div className="flex items-center gap-1.5">
-          <span className="size-2 rounded-full bg-[var(--status-top-rated-text)]"></span>
-          Top Rated
-        </div>
-        <div className="flex items-center gap-1.5">
-          <span className="size-2 rounded-full bg-[var(--status-stable-text)]"></span>
-          Reliable
-        </div>
-        <div className="flex items-center gap-1.5">
-          <span className="size-2 rounded-full bg-[var(--status-needs-review-text)]"></span>
-          Needs Review
-        </div>
-        <div className="flex items-center gap-1.5">
-          <span className="size-2 rounded-full bg-[var(--status-flagged-text)]"></span>
-          Flagged
-        </div>
+        {FILTERS.map(({ label, bucket }) => (
+          <button
+            key={bucket}
+            onClick={() => setActiveFilter(activeFilter === bucket ? "all" : bucket)}
+            className={`flex items-center gap-1.5 cursor-pointer transition-opacity ${
+              activeFilter !== "all" && activeFilter !== bucket ? "opacity-40" : ""
+            }`}
+          >
+            <span className={`size-2 rounded-full bg-[var(--status-${
+              bucket === "top_rated" ? "top-rated" :
+              bucket === "needs_review" ? "needs-review" :
+              bucket
+            }-text)]`}></span>
+            {label}
+          </button>
+        ))}
+        {activeFilter !== "all" && (
+          <button
+            onClick={() => setActiveFilter("all")}
+            className="text-[10px] text-muted-foreground underline underline-offset-2 cursor-pointer"
+          >
+            Clear
+          </button>
+        )}
       </div>
 
-      <HotelGrid hotels={hotels} />
+      <HotelGrid hotels={activeFilter === "all" ? hotels : hotels.filter(h => h.status_bucket === activeFilter)} />
     </div>
   )
 }

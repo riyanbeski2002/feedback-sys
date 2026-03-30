@@ -28,7 +28,6 @@ const feedbackSchema = z.object({
   service_quality: z.number().min(1).max(5),
   room_cleanliness: z.number().min(1).max(5),
   amenities_provided: z.number().min(1).max(5),
-  repeat_stay_likelihood: z.number().min(1).max(5),
   recommend_to_colleagues: z.number().min(1).max(5),
   comment: z.string().optional(),
 })
@@ -48,7 +47,6 @@ export function FeedbackForm({ bookingId, hotelId, hotelName }: { bookingId: str
       service_quality: 0,
       room_cleanliness: 0,
       amenities_provided: 0,
-      repeat_stay_likelihood: 0,
       recommend_to_colleagues: 0,
       comment: "",
     },
